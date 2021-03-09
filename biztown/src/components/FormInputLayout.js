@@ -104,7 +104,13 @@ class FormInputLayout extends Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep < 6) {
+    if (currentStep === 5 && this.props.preTest) {
+      return (
+        <button className="btn btn-success btn-block float-right navigation-btn">
+          Submit
+        </button>
+      );
+    } else if (currentStep < 6) {
       return (
         <button
           className="btn btn-primary float-right navigation-btn"
@@ -151,7 +157,7 @@ class FormInputLayout extends Component {
               marginTop: "0",
             }}
           >
-            {this.props.pretest
+            {this.props.preTest
               ? "JA BizTown Pre-Program Survey"
               : "JA BizTown Post-Program Survey"}
           </h2>
@@ -185,7 +191,9 @@ class FormInputLayout extends Component {
               />
             )}
             {currentStep === 5 && <AboutMyFuture />}
-            {currentStep === 6 && <AboutMyFacilitators />}
+            {currentStep === 6 && this.props.postTest && (
+              <AboutMyFacilitators />
+            )}
             <div className="page-nav-buttons">
               {this.previousButton()}
               {this.nextButton()}

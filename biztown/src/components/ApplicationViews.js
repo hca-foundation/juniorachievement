@@ -7,11 +7,11 @@ const ApplicationViews = () => {
     <>
       <Route
         path="/pretest/"
-        render={() => <FormInputLayout pretest={true} />}
+        render={() => <FormInputLayout preTest={true} />}
       />
       <Route
         path="/posttest"
-        render={() => <FormInputLayout posttest={true} />}
+        render={() => <FormInputLayout postTest={true} />}
       />
       <Route
         path="/completionPage"
