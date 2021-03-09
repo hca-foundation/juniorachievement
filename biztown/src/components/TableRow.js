@@ -13,7 +13,7 @@ const TableRow = (props) => {
               <Input
                 ref={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 23}_answer`}
                 value={1}
                 required
               ></Input>
@@ -24,7 +24,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 23}_answer`}
                 value={2}
                 required
               ></Input>
@@ -35,7 +35,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 23}_answer`}
                 value={3}
                 required
               ></Input>
@@ -52,7 +52,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 26}_answer`}
                 value={1}
                 required
               ></Input>
@@ -63,7 +63,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 26}_answer`}
                 value={2}
                 required
               ></Input>
@@ -74,7 +74,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 26}_answer`}
                 value={3}
                 required
               ></Input>
@@ -85,7 +85,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 26}_answer`}
                 value={4}
                 required
               ></Input>
@@ -102,7 +102,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 33}_answer`}
                 value={1}
                 required
               ></Input>
@@ -113,7 +113,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 33}_answer`}
                 value={2}
                 required
               ></Input>
@@ -124,7 +124,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx + 33}_answer`}
                 value={3}
                 required
               ></Input>
@@ -135,7 +135,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`radio${props.idx}`}
+                name={`q${props.idx}_answer`}
                 value={4}
                 required
               ></Input>

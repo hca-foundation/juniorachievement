@@ -16,6 +16,9 @@ class FormInputLayout extends Component {
       currentStep: 1,
       aboutData: {},
       multipleChoiceData: {},
+      aboutMeData: {},
+      aboutMyFutureData: {},
+      aboutMyFacilitatorsData: {},
       password: "",
       pageTitle: [
         "Tell Us About You",
