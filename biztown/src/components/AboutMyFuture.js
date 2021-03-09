@@ -22,6 +22,13 @@ const AboutMyFuture = () => {
     input7,
   ];
 
+  const responses = [
+    { name: "Disagree", value: 1 },
+    { name: "Slightly Disagree", value: 2 },
+    { name: "Slightly Agree", value: 3 },
+    { name: "Agree", value: 4 },
+  ];
+
   const handleQuestions26To32 = (e) => {
     e.preventDefault();
 
@@ -67,6 +74,7 @@ const AboutMyFuture = () => {
           {prompts.map((prompt, idx) => (
             <TableRow
               key={prompt}
+              responses={responses}
               prompt={prompt}
               inputs={inputs}
               idx={idx}
