@@ -1,18 +1,26 @@
-import React, { useRef, Redirect } from "react"
-import TableRow from "./TableRow"
+import React, { useRef, Redirect } from "react";
+import TableRow from "./TableRow";
 import DataManager from "../modules/DataManager";
-import { Table, Button } from 'reactstrap';
+import { Table } from "reactstrap";
 
 const AboutMyFuture = () => {
-  const input1 = useRef()
-  const input2 = useRef()
-  const input3 = useRef()
-  const input4 = useRef()
-  const input5 = useRef()
-  const input6 = useRef()
-  const input7 = useRef()
+  const input1 = useRef();
+  const input2 = useRef();
+  const input3 = useRef();
+  const input4 = useRef();
+  const input5 = useRef();
+  const input6 = useRef();
+  const input7 = useRef();
 
-  const inputs = [input1, input2, input3, input4, input5, input6, input7]
+  const inputs = [
+    input1,
+    input2,
+    input3,
+    input4,
+    input5,
+    input6,
+    input7,
+  ];
 
   const handleQuestions26To32 = (e) => {
     e.preventDefault();
@@ -24,18 +32,25 @@ const AboutMyFuture = () => {
       q29_score: input4.current.value,
       q30_score: input5.current.value,
       q31_score: input6.current.value,
-      q32_score: input7.current.value
-    }
+      q32_score: input7.current.value,
+    };
 
     DataManager.post("pretest", questions26To32).then(() => {
-      <Redirect to="/aboutme" />
-    })
+      <Redirect to="/aboutme" />;
+    });
+  };
 
-  }
+  const prompts = [
+    "I will set goals for my future.",
+    "I feel in control over how my future will turn out.",
+    "Doing well at school is important to me.",
+    "I expect to graduate from high school.",
+    "I plan to attend at least two years in college.",
+    "I think I will probably graduate from college.",
+    "I believe I can create my own future.",
+  ];
 
-  const prompts = ["I will set goals for my future.", "I feel in control over how my future will turn out.", "Doing well at school is important to me.", "I expect to graduate from high school.", "I plan to attend at least two years in college.", "I think I will probably graduate from college.", "I believe I can create my own future."]
-
-  return(
+  return (
     <>
       <Table>
         <thead>
@@ -50,12 +65,18 @@ const AboutMyFuture = () => {
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
-            <TableRow prompt={prompt} inputs={inputs} idx={idx} aboutMyFuture={true}/>
+            <TableRow
+              key={prompt}
+              prompt={prompt}
+              inputs={inputs}
+              idx={idx}
+              aboutMyFuture={true}
+            />
           ))}
         </tbody>
       </Table>
     </>
-  )
-}
+  );
+};
 
-export default AboutMyFuture
+export default AboutMyFuture;

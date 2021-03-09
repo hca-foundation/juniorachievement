@@ -1,14 +1,14 @@
-import React, { useRef, Redirect } from "react"
-import TableRow from "./TableRow"
+import React, { useRef, Redirect } from "react";
+import TableRow from "./TableRow";
 import DataManager from "../modules/DataManager";
-import { Table, Button } from 'reactstrap';
+import { Table } from "reactstrap";
 
 const AboutMyFacilitators = () => {
-  const input1 = useRef()
-  const input2 = useRef()
-  const input3 = useRef()
+  const input1 = useRef();
+  const input2 = useRef();
+  const input3 = useRef();
 
-  const inputs = [input1, input2, input3]
+  const inputs = [input1, input2, input3];
 
   const handleQuestions33To35 = (e) => {
     e.preventDefault();
@@ -16,15 +16,19 @@ const AboutMyFacilitators = () => {
     const questions33To35 = {
       q33_score: input1.current.value,
       q34_score: input2.current.value,
-      q35_score: input3.current.value
-    }
+      q35_score: input3.current.value,
+    };
 
     DataManager.post("posttest", questions33To35).then(() => {
-      <Redirect to="/" />
-    })
-  }
+      <Redirect to="/" />;
+    });
+  };
 
-  const prompts = ["My instructor/volunteer made a connection between real life and what I learned in the classroom.", "My instructor/volunteer helped me to realize the importance of staying in school.", "My instructor/volunteer’s personal stories motivated me."]
+  const prompts = [
+    "My instructor/volunteer made a connection between real life and what I learned in the classroom.",
+    "My instructor/volunteer helped me to realize the importance of staying in school.",
+    "My instructor/volunteer’s personal stories motivated me.",
+  ];
 
   return (
     <>
@@ -41,13 +45,18 @@ const AboutMyFacilitators = () => {
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
-            <TableRow prompt={prompt} inputs={inputs} idx={idx} aboutMyFuture={true}/>
+            <TableRow
+              key={prompt}
+              prompt={prompt}
+              inputs={inputs}
+              idx={idx}
+              aboutMyFuture={true}
+            />
           ))}
         </tbody>
       </Table>
     </>
-  )
+  );
+};
 
-}
-
-export default AboutMyFacilitators
+export default AboutMyFacilitators;
