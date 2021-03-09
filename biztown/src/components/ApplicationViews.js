@@ -1,31 +1,24 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import  { FormInputLayout } from "./FormInputLayout.js"
+import { FormInputLayout } from "./FormInputLayout.js";
 
 const ApplicationViews = () => {
-
-  return(
+  return (
     <>
       <Route
         path="/pretest/"
-        render={()=> (
-          <FormInputLayout />
-        )}
+        render={() => <FormInputLayout pretest={true} />}
       />
       <Route
         path="/posttest"
-        render={()=> (
-          <FormInputLayout />
-        )}
+        render={() => <FormInputLayout posttest={true} />}
       />
       <Route
         path="/completionPage"
-        render={()=> (
-          <div>Complete!!</div>
-        )}
+        render={() => <div>Complete!!</div>}
       />
     </>
-  )
-}
+  );
+};
 
-export default ApplicationViews
+export default ApplicationViews;

@@ -151,7 +151,9 @@ class FormInputLayout extends Component {
               marginTop: "0",
             }}
           >
-            JA BizTown Post Program Survey
+            {this.props.pretest
+              ? "JA BizTown Pre-Program Survey"
+              : "JA BizTown Post-Program Survey"}
           </h2>
 
           <form
