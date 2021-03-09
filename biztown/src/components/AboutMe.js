@@ -1,7 +1,7 @@
 import React, { useRef, Redirect } from "react";
 import TableRow from "./TableRow";
 import DataManager from "../modules/DataManager";
-import { Table, Button } from "reactstrap";
+import { Table } from "reactstrap";
 
 const AboutMe = (props) => {
   const input1 = useRef();
@@ -29,7 +29,6 @@ const AboutMe = (props) => {
     "I intend to start saving money for the future.",
     "I will think more about financial issues in my future.",
   ];
-  var test = false;
   return (
     <>
       <Table bordered>
@@ -48,13 +47,12 @@ const AboutMe = (props) => {
               key={prompt}
               inputs={inputs}
               prompt={prompt}
-              idx={idx + 5}
+              idx={idx}
               aboutMe={true}
             />
           ))}
         </tbody>
       </Table>
-      {test && <Button onClick={handleQuestions23To25}>Next</Button>}
     </>
   );
 };

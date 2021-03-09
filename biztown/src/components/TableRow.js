@@ -1,96 +1,150 @@
-import React from "react"
-import {Label, Input} from 'reactstrap';
+import React from "react";
+import { Label, Input } from "reactstrap";
 
-const TableRow = (props) => {  
-  return(
+const TableRow = (props) => {
+  return (
     <tr>
-      {props.aboutMe ? 
+      {props.aboutMe ? (
         <>
-          <th scope="row">{props.idx + 23}</th>
+          <th scope="row">{props.idx + 23}. </th>
           <td>{props.prompt}</td>
           <td>
             <Label check>
               <Input
-              ref={props.inputs[props.idx]}
-              type="radio" name={`radio${props.idx}`} 
-              value={1} 
-              required>
-              </Input>
+                ref={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={1}
+                required
+              ></Input>
             </Label>
           </td>
           <td>
             <Label check>
               <Input
-              innerRef={props.inputs[props.idx]}
-              type="radio" name={`radio${props.idx}`}
-              value={2}
-              required>
-              </Input>
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={2}
+                required
+              ></Input>
             </Label>
           </td>
           <td>
             <Label check>
               <Input
-              innerRef={props.inputs[props.idx]}
-              type="radio" name={`radio${props.idx}`}
-              value={3}
-              required>
-              </Input>
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={3}
+                required
+              ></Input>
             </Label>
           </td>
         </>
-      : null}
-      {props.aboutMyFuture ? 
-      <>
-        <th scope="row">{props.idx + 26}</th>
-        <td>{props.prompt}</td>
+      ) : null}
+      {props.aboutMyFuture ? (
+        <>
+          <th scope="row">{props.idx + 26}. </th>
+          <td>{props.prompt}</td>
           <td>
             <Label check>
               <Input
-              innerRef={props.inputs[props.idx]}
-              type="radio" name={`radio${props.idx}`}
-              value={1}
-              required>
-              </Input>
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={1}
+                required
+              ></Input>
             </Label>
           </td>
           <td>
             <Label check>
               <Input
-              innerRef={props.inputs[props.idx]}
-              type="radio"
-              name={`radio${props.idx}`}
-              value={2}
-              required>
-              </Input>
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={2}
+                required
+              ></Input>
             </Label>
           </td>
           <td>
             <Label check>
               <Input
-              innerRef={props.inputs[props.idx]}
-              type="radio"
-              name={`radio${props.idx}`}
-              value={3}
-              required>
-              </Input>
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={3}
+                required
+              ></Input>
             </Label>
           </td>
           <td>
             <Label check>
               <Input
-              innerRef={props.inputs[props.idx]}
-              type="radio"
-              name={`radio${props.idx}`}
-              value={4}
-              required>
-              </Input>
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={4}
+                required
+              ></Input>
             </Label>
-        </td>      
-      </>
-      : null}
+          </td>
+        </>
+      ) : null}
+      {props.aboutMyFacilitators ? (
+        <>
+          <th scope="row">{props.idx + 33}. </th>
+          <td>{props.prompt}</td>
+          <td>
+            <Label check>
+              <Input
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={1}
+                required
+              ></Input>
+            </Label>
+          </td>
+          <td>
+            <Label check>
+              <Input
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={2}
+                required
+              ></Input>
+            </Label>
+          </td>
+          <td>
+            <Label check>
+              <Input
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={3}
+                required
+              ></Input>
+            </Label>
+          </td>
+          <td>
+            <Label check>
+              <Input
+                innerRef={props.inputs[props.idx]}
+                type="radio"
+                name={`radio${props.idx}`}
+                value={4}
+                required
+              ></Input>
+            </Label>
+          </td>
+        </>
+      ) : null}
     </tr>
-  )
-}
+  );
+};
 
-export default TableRow
+export default TableRow;

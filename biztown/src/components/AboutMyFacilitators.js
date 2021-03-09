@@ -50,7 +50,7 @@ const AboutMyFacilitators = () => {
               prompt={prompt}
               inputs={inputs}
               idx={idx}
-              aboutMyFuture={true}
+              aboutMyFacilitators={true}
             />
           ))}
         </tbody>
