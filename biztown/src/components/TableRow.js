@@ -8,39 +8,19 @@ const TableRow = (props) => {
         <>
           <th scope="row">{props.idx + 23}. </th>
           <td>{props.prompt}</td>
-          <td>
-            <Label check>
-              <Input
-                ref={props.inputs[props.idx]}
-                type="radio"
-                name={`q${props.idx + 23}_answer`}
-                value={1}
-                required
-              ></Input>
-            </Label>
-          </td>
-          <td>
-            <Label check>
-              <Input
-                innerRef={props.inputs[props.idx]}
-                type="radio"
-                name={`q${props.idx + 23}_answer`}
-                value={2}
-                required
-              ></Input>
-            </Label>
-          </td>
-          <td>
-            <Label check>
-              <Input
-                innerRef={props.inputs[props.idx]}
-                type="radio"
-                name={`q${props.idx + 23}_answer`}
-                value={3}
-                required
-              ></Input>
-            </Label>
-          </td>
+          {props.responses.map((response) => (
+            <td>
+              <Label check>
+                <Input
+                  ref={props.inputs[props.idx]}
+                  type="radio"
+                  name={`q${props.idx + 23}_answer`}
+                  value={response.value}
+                  required
+                ></Input>
+              </Label>
+            </td>
+          ))}
         </>
       ) : null}
       {props.aboutMyFuture ? (
@@ -135,7 +115,7 @@ const TableRow = (props) => {
               <Input
                 innerRef={props.inputs[props.idx]}
                 type="radio"
-                name={`q${props.idx}_answer`}
+                name={`q${props.idx + 33}_answer`}
                 value={4}
                 required
               ></Input>

@@ -29,6 +29,13 @@ const AboutMe = (props) => {
     "I intend to start saving money for the future.",
     "I will think more about financial issues in my future.",
   ];
+
+  const responses = [
+    { name: "Not Likely", value: 1 },
+    { name: "Somewhat Likely", value: 2 },
+    { name: "Very Likely", value: 3 },
+  ];
+
   return (
     <>
       <Table bordered>
@@ -46,6 +53,7 @@ const AboutMe = (props) => {
             <TableRow
               key={prompt}
               inputs={inputs}
+              responses={responses}
               prompt={prompt}
               idx={idx}
               aboutMe={true}
