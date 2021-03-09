@@ -9,9 +9,10 @@ const TableRow = (props) => {
           <th scope="row">{props.idx + 23}. </th>
           <td>{props.prompt}</td>
           {props.responses.map((response) => (
-            <td>
+            <td key={response.name}>
               <Label check>
                 <Input
+                  key={response.name}
                   ref={props.inputs[props.idx]}
                   type="radio"
                   name={`q${props.idx + 23}_answer`}
@@ -28,7 +29,7 @@ const TableRow = (props) => {
           <th scope="row">{props.idx + 26}. </th>
           <td>{props.prompt}</td>
           {props.responses.map((response) => (
-            <td>
+            <td key={response.name}>
               <Label check>
                 <Input
                   innerRef={props.inputs[props.idx]}
@@ -47,9 +48,10 @@ const TableRow = (props) => {
           <th scope="row">{props.idx + 33}. </th>
           <td>{props.prompt}</td>
           {props.responses.map((response) => (
-            <td>
+            <td key={response.name}>
               <Label check>
                 <Input
+                  key={response.name}
                   innerRef={props.inputs[props.idx]}
                   type="radio"
                   name={`q${props.idx + 33}_answer`}
