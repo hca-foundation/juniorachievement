@@ -12,7 +12,6 @@ const TableRow = (props) => {
             <td key={response.name}>
               <Label check>
                 <Input
-                  key={response.name}
                   ref={props.inputs[props.idx]}
                   type="radio"
                   name={`q${props.idx + 23}_answer`}
@@ -51,7 +50,6 @@ const TableRow = (props) => {
             <td key={response.name}>
               <Label check>
                 <Input
-                  key={response.name}
                   innerRef={props.inputs[props.idx]}
                   type="radio"
                   name={`q${props.idx + 33}_answer`}
