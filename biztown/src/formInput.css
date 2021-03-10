@@ -89,5 +89,8 @@
 }
 
 .register-medium-col {
-	width: 50px;
+	width: 60px;
+}
+.register-large-medium-col {
+	width: 80px;
 }

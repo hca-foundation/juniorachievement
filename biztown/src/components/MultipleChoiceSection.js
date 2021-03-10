@@ -1,6 +1,14 @@
-import React, { Component } from "react";
+
+import { Component } from "react";
 
 class MultipleChoiceSection extends Component {
+    /*
+        TODO:
+        * add required flag to all inputs
+
+        POST MVP STATE:
+        * have these questions editable on the client by users
+    */
     render () {
         var multipleChoiceQuestions = [
             {

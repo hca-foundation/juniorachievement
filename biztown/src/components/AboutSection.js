@@ -1,8 +1,42 @@
-import React, { Component, useEffect, useState } from "react";
+import { Component } from "react";
 import DataManager from "../modules/DataManager";
+import { Input } from "reactstrap";
+
+const participationOptions = [
+  "This is my first time",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5 or more times",
+];
+const gradeOptions = ["4th", "5th", "6th", "7th", "Other"];
 
 class AboutSection extends Component {
+  /*
+        TODO:
+        * update to use react-dates. date input not supported in safari.
+        * add required flag to all inputs
+        * add school dropdown
+    */
   render() {
+    if (!Object.keys(this.props.schoolData).length) {
+      DataManager.getAll()
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          var schoolMap = {};
+          data.results.forEach((school) => {
+            if (!schoolMap[school.district]) {
+              schoolMap[school.district] = [];
+            }
+            schoolMap[school.district].push(school);
+          });
+          this.props.setSchoolData(schoolMap);
+        });
+    }
+
     return (
       <div>
         <h3>Tell Us About You</h3>
@@ -50,6 +84,63 @@ class AboutSection extends Component {
                 handleChange={this.props.handleChange}
               />
             </div>
+            {this.props.data.grade === "Other" && (
+              <div className="flex-column-container">
+                <input
+                  className="form-control form-control-text-input"
+                  id="otherGrade"
+                  name="otherGrade"
+                  type="text"
+                  defaultValue={this.props.data.otherGrade}
+                  onChange={this.props.handleChange}
+                />
+              </div>
+            )}
+          </li>
+          {/*<li> School Information </li> */}
+          <li className="form-group">
+            <div className="flex-column-container">
+              <label className="form-question">
+                Where do yu go to school?
+              </label>
+              <div className="flex-container">
+                <label className="form-question">
+                  School District:
+                </label>
+                <SchoolDisctictComponent
+                  schoolDistrict={this.props.data.schoolDistrict}
+                  schoolData={this.props.schoolData}
+                  handleChange={this.props.handleChange}
+                />
+              </div>
+              <div className="flex-container">
+                <label className="form-question">School Name:</label>
+                <SchoolSelectionComponent
+                  school={this.props.data.school}
+                  schoolOptions={
+                    this.props.schoolData[
+                      this.props.data.schoolDistrict
+                    ]
+                  }
+                  handleChange={this.props.handleChange}
+                />
+              </div>
+            </div>
+          </li>
+          <li className="form-group">
+            <div className="flex-column-container">
+              <label className="form-question">
+                What is your teacher's last name?
+              </label>
+              <input
+                className="form-control form-control-text-input"
+                id="teacher"
+                name="teacher"
+                type="text"
+                defaultValue={this.props.data.teacher}
+                onChange={this.props.handleChange}
+              />
+            </div>
           </li>
           <li className="form-group">
             <div className="flex-column-container">
@@ -65,17 +156,6 @@ class AboutSection extends Component {
               </div>
             </div>
           </li>
-          {/* <li className="form-group">
-            <div className="flex-column-container">
-              <label>Which school do you attend?</label>
-              <div className="">
-                <SchoolComponent
-                // participation={this.props.data.participation}
-                // handleChange={this.props.handleChange}
-                />
-              </div>
-            </div>
-          </li> */}
         </ol>
       </div>
     );
@@ -83,7 +163,6 @@ class AboutSection extends Component {
 }
 
 function GradeComponent(props) {
-  var gradeOptions = ["4th", "5th", "6th", "7th", "Other"];
   var gradeInput = gradeOptions.map((gradeOption) => {
     return (
       <div className="flex-container" key={gradeOption}>
@@ -109,14 +188,6 @@ function GradeComponent(props) {
 }
 
 function ParticipationComponent(props) {
-  var participationOptions = [
-    "This is my first time",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5 or more times",
-  ];
   var participationInput = participationOptions.map(
     (participationOption) => {
       return (
@@ -144,6 +215,57 @@ function ParticipationComponent(props) {
     }
   );
   return <div>{participationInput}</div>;
+}
+
+function SchoolDisctictComponent(props) {
+  var schoolDistricts = Object.keys(props.schoolData);
+  var schoolDistrictOptions =
+    schoolDistricts &&
+    schoolDistricts.map((schoolDistrict) => {
+      return (
+        <option
+          key={schoolDistrict}
+          name="schoolDistrictOption"
+          value={schoolDistrict}
+        >
+          {schoolDistrict}
+        </option>
+      );
+    });
+  return (
+    <Input
+      type="select"
+      name="schoolDistrict"
+      id="schoolDistrict"
+      onChange={props.handleChange}
+      defaultValue={props.schoolDistrict}
+    >
+      {schoolDistrictOptions}
+    </Input>
+  );
+}
+
+function SchoolSelectionComponent(props) {
+  var schoolOptions =
+    props.schoolOptions &&
+    props.schoolOptions.map((school) => {
+      return (
+        <option key={school.id} name="schoolOption" value={school.id}>
+          {school.school_name}
+        </option>
+      );
+    });
+  return (
+    <Input
+      type="select"
+      name="school"
+      id="school"
+      onChange={props.handleChange}
+      defaultValue={props.schoolDistrict || null}
+    >
+      {schoolOptions}
+    </Input>
+  );
 }
 
 // const SchoolComponent = (props) => {

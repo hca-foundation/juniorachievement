@@ -2,12 +2,12 @@ import "../formInput.css";
 import React, { Component, Fragment, Redirect } from "react";
 import { AboutSection } from "./AboutSection.js";
 import { MultipleChoiceSection } from "./MultipleChoiceSection.js";
-import { DepositFormSection } from "./DepositFormSection.js";
+import { FreeResponseSection } from "./FreeResponseSection.js";
 import DataManager from "../modules/DataManager";
 import AboutMe from "./AboutMe";
 import AboutMyFuture from "./AboutMyFuture";
 import AboutMyFacilitators from "./AboutMyFacilitators";
-import headerLogo from "../images/bizTownLogo.png";
+import headerLogo from "./../JAInspiringHeader.png";
 
 class FormInputLayout extends Component {
   constructor(props) {
@@ -15,33 +15,48 @@ class FormInputLayout extends Component {
     this.state = {
       currentStep: 1,
       aboutData: {},
+      schoolData: {},
       multipleChoiceData: {},
-      aboutMeData: {},
-      aboutMyFutureData: {},
-      aboutMyFacilitatorsData: {},
-      password: "",
-      pageTitle: [
-        "Tell Us About You",
-        "Questions About The Program Content",
-        "Fill in the appropriate blanks to complete the checkbook components",
-      ],
+      freeResponseData: {
+        depositForm: {
+          prepopulatedRows: {
+            rowSubtitle_2: "LIST CHECKS SINGLY",
+            dollarAmount_2: "62",
+            centAmount_2: "00",
+            rowSubtitle_5: "SUBTITLE",
+            rowSubtitle_6: "LESS CASH RECEIVED",
+            rowSubtitle_7: "NET DEPOSIT",
+          },
+          rowEntries: {},
+        },
+        checkSlip: {},
+        registerEntries: {
+          prepopulatedRows: {
+            entryNumber_0: "007",
+            date_0: "3/14",
+            transactionDesc_0: "Macy's",
+            paymentDollarAmount_0: "3",
+            paymentCentAmount_0: "75",
+            date_2: "3/14",
+          },
+          rowEntries: {},
+        },
+      },
+      personalFinanceData: {},
     };
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
   handleAboutSectionChange = (event) => {
     const { name, value } = event.target;
-    this.setState((prevState) => {
-      var aboutData = JSON.parse(JSON.stringify(prevState.aboutData));
-      aboutData[name] = value;
-      return { aboutData };
-    });
+    if (name === "schoolDistrict") {
+      this.setInitialSchoolInfo(value);
+    } else {
+      this.setState((prevState) => {
+        var aboutData = JSON.parse(JSON.stringify(prevState.aboutData));
+        aboutData[name] = value;
+        return { aboutData };
+      });
+    }
   };
 
   handleMultipleSectionChange = (event) => {
@@ -55,27 +70,98 @@ class FormInputLayout extends Component {
     });
   };
 
-  handleBehaviouralAboutMeChange = (event) => {
-    console.log("handleBehaviouralAboutMeChange", event);
+  handleFreeResponseSectionChange = (bankFormType, event) => {
+    const { name, value } = event.target;
+    if (bankFormType === "checkSlip") {
+      this.setState((prevState) => {
+        var freeResponseData = JSON.parse(
+          JSON.stringify(prevState.freeResponseData)
+        );
+        freeResponseData[bankFormType][name] = value;
+        return { freeResponseData };
+      });
+    } else {
+      this.setState((prevState) => {
+        var freeResponseData = JSON.parse(
+          JSON.stringify(prevState.freeResponseData)
+        );
+        freeResponseData[bankFormType]["rowEntries"][name] = value;
+        return { freeResponseData };
+      });
+    }
+  };
+
+  setSchoolData = (schoolData) => {
+    this.setState({ schoolData });
+    // initialise to first school district
+    this.setInitialSchoolInfo(Object.keys(schoolData)[0]);
+  };
+
+  setInitialSchoolInfo = (schoolDistrict) => {
+    var schoolData = this.state.schoolData;
+    var aboutData = JSON.parse(JSON.stringify(this.state.aboutData));
+    var school = schoolData[schoolDistrict][0].id;
+    aboutData = { ...aboutData, schoolDistrict, school };
+    this.setState({ aboutData });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    var completedForm = {
-      ...this.state.aboutData,
-      ...this.state.multipleChoiceData,
+    // about section
+    var aboutSectionAnswerObj = { ...this.state.aboutData };
+    // if other grade is included, submit other value as grade in form
+    if (aboutSectionAnswerObj.otherGrade) {
+      aboutSectionAnswerObj.grade = aboutSectionAnswerObj.otherGrade;
+      aboutSectionAnswerObj.otherGrade = null;
+    }
+    // remove school district from response
+    aboutSectionAnswerObj.schoolDistrict = null;
+
+    // format free response data
+    var depositFormData = this.state.freeResponseData.depositForm
+      .rowEntries;
+    var depositFormAnswerObj = {
+      q11_answer: `${depositFormData.dollarAmount_5}.${depositFormData.centAmount_5}`,
+      q12_answer: `${depositFormData.dollarAmount_6}.${depositFormData.centAmount_6}`,
+      q13_answer: `${depositFormData.dollarAmount_7}.${depositFormData.centAmount_7}`,
     };
-    DataManager.post("pretest", completedForm).then(() => {
+    var registerFormData = this.state.freeResponseData.registerEntries
+      .rowEntries;
+    var registerFormAnswerObj = {
+      q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
+      q18_answer: `${registerFormData.balanceDollarAmount_1}.${registerFormData.balanceCentAmount_1}`,
+      q19_answer: registerFormData.transactionDesc_2,
+      q20_answer: `${registerFormData.paymentDollarAmount_2}.${registerFormData.paymentCentAmount_2}`,
+      q21_answer: `${registerFormData.balanceDollarAmount_2}.${registerFormData.balanceCentAmount_2}`,
+      q22_answer: `${registerFormData.balanceDollarAmount_3}.${registerFormData.balanceCentAmount_3}`,
+    };
+
+    // construct completed form from different objects
+    var completedForm = {
+      ...depositFormAnswerObj,
+      ...registerFormAnswerObj,
+      ...aboutSectionAnswerObj,
+      ...this.state.multipleChoiceData,
+      ...this.state.freeResponseData.checkSlip,
+    };
+    console.log("completedForm", completedForm);
+
+    var submitPath = this.props.posttest
+      ? "postassessment/"
+      : "preassessment/";
+    DataManager.post(submitPath, completedForm).then(() => {
       <Redirect to="/completionPage" />;
     });
   };
 
-  _next = () => {
+  _next = (e) => {
+    // this.handleSubmit(e)
     let currentStep = this.state.currentStep;
     currentStep = currentStep >= 5 ? 6 : currentStep + 1;
     this.setState({
       currentStep: currentStep,
     });
+    e.preventDefault();
   };
 
   _prev = () => {
@@ -107,13 +193,7 @@ class FormInputLayout extends Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep === 5 && this.props.preTest) {
-      return (
-        <button className="btn btn-success btn-block float-right navigation-btn">
-          Submit
-        </button>
-      );
-    } else if (currentStep < 6) {
+    if (currentStep < 6) {
       return (
         <button
           className="btn btn-primary float-right navigation-btn"
@@ -160,9 +240,8 @@ class FormInputLayout extends Component {
               marginTop: "0",
             }}
           >
-            {this.props.preTest
-              ? "JA BizTown Pre-Program Survey"
-              : "JA BizTown Post-Program Survey"}
+            JA BizTown {this.props.posttest ? "Post" : "Pre"} Program
+            Survey
           </h2>
 
           <form
@@ -173,7 +252,9 @@ class FormInputLayout extends Component {
             {currentStep === 1 && (
               <AboutSection
                 handleChange={this.handleAboutSectionChange}
+                setSchoolData={this.setSchoolData}
                 data={this.state.aboutData}
+                schoolData={this.state.schoolData}
               />
             )}
             {currentStep === 2 && (
@@ -183,18 +264,14 @@ class FormInputLayout extends Component {
               />
             )}
             {currentStep === 3 && (
-              <DepositFormSection
-                handleChange={this.handleChange}
-                password={this.state.password}
+              <FreeResponseSection
+                handleChange={this.handleFreeResponseSectionChange}
+                data={this.state.freeResponseData}
               />
             )}
-            {currentStep === 4 && (
-              <AboutMe
-                handleChange={this.handleBehaviouralAboutMeChange}
-              />
-            )}
+            {currentStep === 4 && <AboutMe />}
             {currentStep === 5 && <AboutMyFuture />}
-            {currentStep === 6 && this.props.postTest && (
+            {this.props.posttest && currentStep === 6 && (
               <AboutMyFacilitators />
             )}
             <div className="page-nav-buttons">
