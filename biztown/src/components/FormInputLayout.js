@@ -265,6 +265,7 @@ class FormInputLayout extends Component {
             )}
             {currentStep === 2 && (
               <MultipleChoiceSection
+                preTest={this.props.preTest}
                 handleChange={this.handleMultipleSectionChange}
                 data={this.state.multipleChoiceData}
               />
