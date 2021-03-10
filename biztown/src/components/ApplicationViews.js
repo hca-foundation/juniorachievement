@@ -9,17 +9,17 @@ const ApplicationViews = () => {
       <Route exact path="/" render={() => <TestRoutePage />} />
       <Route
         exact
-        path="/pretest/"
-        render={() => <FormInputLayout pretest={true} />}
+        path="/pretest"
+        render={() => <FormInputLayout preTest={true} />}
       />
       <Route
         exact
         path="/posttest"
-        render={() => <FormInputLayout posttest={true} />}
+        render={() => <FormInputLayout postTest={true} />}
       />
       <Route
         exact
-        path="/completionPage"
+        path="/completionpage"
         render={() => <div>Complete!!</div>}
       />
     </>

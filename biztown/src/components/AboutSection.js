@@ -101,7 +101,7 @@ class AboutSection extends Component {
           <li className="form-group">
             <div className="flex-column-container">
               <label className="form-question">
-                Where do yu go to school?
+                Where do you go to school?
               </label>
               <div className="flex-container">
                 <label className="form-question">
