@@ -161,7 +161,7 @@ class FormInputLayout extends Component {
       ? "postassessment/"
       : "preassessment/";
     DataManager.post(submitPath, completedForm).then(() => {
-      <Redirect to="/completionPage" />;
+      this.props.history.push("/completionpage");
     });
   };
 

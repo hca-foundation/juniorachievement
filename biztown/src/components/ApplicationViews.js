@@ -10,12 +10,16 @@ const ApplicationViews = () => {
       <Route
         exact
         path="/pretest"
-        render={() => <FormInputLayout preTest={true} />}
+        render={(props) => (
+          <FormInputLayout preTest={true} {...props} />
+        )}
       />
       <Route
         exact
         path="/posttest"
-        render={() => <FormInputLayout postTest={true} />}
+        render={(props) => (
+          <FormInputLayout postTest={true} {...props} />
+        )}
       />
       <Route
         exact
