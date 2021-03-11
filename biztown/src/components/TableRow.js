@@ -2,6 +2,22 @@ import React from "react";
 import { Label, Input } from "reactstrap";
 
 const TableRow = (props) => {
+  let questionId = "";
+  if (props.aboutMe) {
+    questionId = `q${props.idx + 23}_answer`;
+  } else if (props.aboutMyFuture) {
+    questionId = `q${props.idx + 26}_answer`;
+  } else if (props.aboutMyFacilitators) {
+    questionId = `q${props.idx + 33}_answer`;
+  }
+
+  const isChecked = (questionId, answer) => {
+    var isTrue =
+      questionId in props.data && props.data[questionId] === answer;
+
+    return isTrue;
+  };
+
   return (
     <tr>
       {props.aboutMe ? (
@@ -12,10 +28,11 @@ const TableRow = (props) => {
             <td key={response.name}>
               <Label check>
                 <Input
-                  ref={props.inputs[props.idx]}
                   type="radio"
-                  name={`q${props.idx + 23}_answer`}
+                  name={questionId}
                   value={response.value}
+                  checked={isChecked(questionId, response.value)}
+                  onChange={props.handleChange}
                   required
                 ></Input>
               </Label>
@@ -31,10 +48,10 @@ const TableRow = (props) => {
             <td key={response.name}>
               <Label check>
                 <Input
-                  innerRef={props.inputs[props.idx]}
                   type="radio"
-                  name={`q${props.idx + 26}_answer`}
+                  name={questionId}
                   value={response.value}
+                  onChange={props.handleChange}
                   required
                 ></Input>
               </Label>
@@ -50,9 +67,8 @@ const TableRow = (props) => {
             <td key={response.name}>
               <Label check>
                 <Input
-                  innerRef={props.inputs[props.idx]}
                   type="radio"
-                  name={`q${props.idx + 33}_answer`}
+                  name={questionId}
                   value={response.value}
                   required
                 ></Input>

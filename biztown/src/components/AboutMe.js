@@ -1,29 +1,8 @@
-import React, { useRef, Redirect } from "react";
+import React, { useRef } from "react";
 import TableRow from "./TableRow";
-import DataManager from "../modules/DataManager";
 import { Table } from "reactstrap";
 
 const AboutMe = (props) => {
-  const input1 = useRef();
-  const input2 = useRef();
-  const input3 = useRef();
-
-  const inputs = [input1, input2, input3];
-
-  const handleQuestions23To25 = (e) => {
-    e.preventDefault();
-    console.log("e", e);
-    console.log("this", this);
-
-    const questions23To25 = {
-      q23_score: input1.current.value,
-      q24_score: input2.current.value,
-      q25_score: input3.current.value,
-    };
-
-    props.handleChange(questions23To25);
-  };
-
   const prompts = [
     "I plan to start using a personal budget.",
     "I intend to start saving money for the future.",
@@ -52,7 +31,8 @@ const AboutMe = (props) => {
           {prompts.map((prompt, idx) => (
             <TableRow
               key={prompt}
-              inputs={inputs}
+              data={props.data}
+              handleChange={props.handleChange}
               responses={responses}
               prompt={prompt}
               idx={idx}
