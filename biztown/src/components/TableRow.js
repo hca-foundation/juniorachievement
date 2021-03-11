@@ -43,13 +43,14 @@ const TableRow = (props) => {
         <>
           <th scope="row">{props.idx + 26}. </th>
           <td>{props.prompt}</td>
-          {props.responses.map((response) => (
-            <td key={response.name}>
+          {props.responses.map((response, idx) => (
+            <td key={response[idx]}>
               <Label check>
                 <Input
                   type="radio"
                   name={questionId}
-                  value={response.value}
+                  value={props.values[idx]}
+                  checked={isChecked(questionId, props.values[idx])}
                   onChange={props.handleChange}
                   required
                 ></Input>
@@ -62,13 +63,15 @@ const TableRow = (props) => {
         <>
           <th scope="row">{props.idx + 33}. </th>
           <td>{props.prompt}</td>
-          {props.responses.map((response) => (
-            <td key={response.name}>
+          {props.responses.map((response, idx) => (
+            <td key={response[idx]}>
               <Label check>
                 <Input
                   type="radio"
                   name={questionId}
-                  value={response.value}
+                  value={props.values[idx]}
+                  checked={isChecked(questionId, props.values[idx])}
+                  onChange={props.handleChange}
                   required
                 ></Input>
               </Label>

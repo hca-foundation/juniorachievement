@@ -1,52 +1,8 @@
-import React, { useRef, Redirect } from "react";
+import React from "react";
 import TableRow from "./TableRow";
-import DataManager from "../modules/DataManager";
 import { Table } from "reactstrap";
 
-const AboutMyFuture = () => {
-  const input1 = useRef();
-  const input2 = useRef();
-  const input3 = useRef();
-  const input4 = useRef();
-  const input5 = useRef();
-  const input6 = useRef();
-  const input7 = useRef();
-
-  const inputs = [
-    input1,
-    input2,
-    input3,
-    input4,
-    input5,
-    input6,
-    input7,
-  ];
-
-  const responses = [
-    { name: "Disagree", value: 1 },
-    { name: "Slightly Disagree", value: 2 },
-    { name: "Slightly Agree", value: 3 },
-    { name: "Agree", value: 4 },
-  ];
-
-  const handleQuestions26To32 = (e) => {
-    e.preventDefault();
-
-    const questions26To32 = {
-      q26_score: input1.current.value,
-      q27_score: input2.current.value,
-      q28_score: input3.current.value,
-      q29_score: input4.current.value,
-      q30_score: input5.current.value,
-      q31_score: input6.current.value,
-      q32_score: input7.current.value,
-    };
-
-    DataManager.post("pretest", questions26To32).then(() => {
-      <Redirect to="/aboutme" />;
-    });
-  };
-
+const AboutMyFuture = (props) => {
   const prompts = [
     "I will set goals for my future.",
     "I feel in control over how my future will turn out.",
@@ -56,6 +12,15 @@ const AboutMyFuture = () => {
     "I think I will probably graduate from college.",
     "I believe I can create my own future.",
   ];
+
+  const responses = [
+    "Disagree",
+    "Slightly Disagree",
+    "Slightly Agree",
+    "Agree",
+  ];
+
+  const values = ["1", "2", "3", "4"];
 
   return (
     <>
@@ -74,9 +39,11 @@ const AboutMyFuture = () => {
           {prompts.map((prompt, idx) => (
             <TableRow
               key={prompt}
+              data={props.data}
+              handleChange={props.handleChange}
               responses={responses}
+              values={values}
               prompt={prompt}
-              inputs={inputs}
               idx={idx}
               aboutMyFuture={true}
             />

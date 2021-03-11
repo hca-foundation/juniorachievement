@@ -1,35 +1,16 @@
-import React, { useRef, Redirect } from "react";
+import React from "react";
 import TableRow from "./TableRow";
-import DataManager from "../modules/DataManager";
 import { Table } from "reactstrap";
 
-const AboutMyFacilitators = () => {
-  const input1 = useRef();
-  const input2 = useRef();
-  const input3 = useRef();
-
-  const inputs = [input1, input2, input3];
-
+const AboutMyFacilitators = (props) => {
   const responses = [
-    { name: "Disagree", value: 1 },
-    { name: "Slightly Disagree", value: 2 },
-    { name: "Slightly Agree", value: 3 },
-    { name: "Agree", value: 4 },
+    "Disagree",
+    "Slightly Disagree",
+    "Slightly Agree",
+    "Agree",
   ];
 
-  const handleQuestions33To35 = (e) => {
-    e.preventDefault();
-
-    const questions33To35 = {
-      q33_score: input1.current.value,
-      q34_score: input2.current.value,
-      q35_score: input3.current.value,
-    };
-
-    DataManager.post("posttest", questions33To35).then(() => {
-      <Redirect to="/" />;
-    });
-  };
+  const values = ["1", "2", "3", "4"];
 
   const prompts = [
     "My instructor/volunteer made a connection between real life and what I learned in the classroom.",
@@ -54,9 +35,11 @@ const AboutMyFacilitators = () => {
           {prompts.map((prompt, idx) => (
             <TableRow
               key={prompt}
+              data={props.data}
+              handleChange={props.handleChange}
               responses={responses}
+              values={values}
               prompt={prompt}
-              inputs={inputs}
               idx={idx}
               aboutMyFacilitators={true}
             />
