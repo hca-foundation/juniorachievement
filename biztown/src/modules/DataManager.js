@@ -1,4 +1,7 @@
-const remoteURL = "http://localhost:8000";
+// TODO: Set up dev and production URLs
+
+// NOTE: ensure remoteURL is consistent with local back end url
+const remoteURL = "http://127.0.0.1:8000"; // || "http://localhost:8000"
 
 export default {
   post(tab, obj) {

@@ -21,20 +21,16 @@ class AboutSection extends Component {
     */
   render() {
     if (!Object.keys(this.props.schoolData).length) {
-      DataManager.getAll()
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          var schoolMap = {};
-          data.results.forEach((school) => {
-            if (!schoolMap[school.district]) {
-              schoolMap[school.district] = [];
-            }
-            schoolMap[school.district].push(school);
-          });
-          this.props.setSchoolData(schoolMap);
+      DataManager.getAll("schools").then((data) => {
+        var schoolMap = {};
+        data.results.forEach((school) => {
+          if (!schoolMap[school.district]) {
+            schoolMap[school.district] = [];
+          }
+          schoolMap[school.district].push(school);
         });
+        this.props.setSchoolData(schoolMap);
+      });
     }
 
     return (
