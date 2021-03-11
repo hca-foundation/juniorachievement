@@ -46,6 +46,17 @@ class FormInputLayout extends Component {
     };
   }
 
+  handlePersonalFinanceSectionChange = (event) => {
+    const { name, value } = event.target;
+    this.setState((prevState) => {
+      var personalFinanceData = JSON.parse(
+        JSON.stringify(prevState.personalFinanceData)
+      );
+      personalFinanceData[name] = value;
+      return { personalFinanceData };
+    });
+  };
+
   handleAboutSectionChange = (event) => {
     const { name, value } = event.target;
     if (name === "schoolDistrict") {
@@ -276,10 +287,24 @@ class FormInputLayout extends Component {
                 data={this.state.freeResponseData}
               />
             )}
-            {currentStep === 4 && <AboutMe />}
-            {currentStep === 5 && <AboutMyFuture />}
+            {currentStep === 4 && (
+              <AboutMe
+                handleChange={this.handlePersonalFinanceSectionChange}
+                data={this.state.personalFinanceData}
+              />
+            )}
+            {currentStep === 5 && (
+              <AboutMyFuture
+                handleChange={this.handlePersonalFinanceSectionChange}
+                data={this.state.personalFinanceData}
+              />
+            )}
+
             {this.props.postTest && currentStep === 6 && (
-              <AboutMyFacilitators />
+              <AboutMyFacilitators
+                handleChange={this.handlePersonalFinanceSectionChange}
+                data={this.state.personalFinanceData}
+              />
             )}
             <div className="page-nav-buttons">
               {this.previousButton()}
