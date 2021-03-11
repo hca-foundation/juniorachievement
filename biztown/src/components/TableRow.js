@@ -14,7 +14,6 @@ const TableRow = (props) => {
   const isChecked = (questionId, answer) => {
     var isTrue =
       questionId in props.data && props.data[questionId] === answer;
-
     return isTrue;
   };
 
@@ -24,14 +23,14 @@ const TableRow = (props) => {
         <>
           <th scope="row">{props.idx + 23}. </th>
           <td>{props.prompt}</td>
-          {props.responses.map((response) => (
-            <td key={response.name}>
+          {props.responses.map((response, idx) => (
+            <td key={response[idx]}>
               <Label check>
                 <Input
                   type="radio"
                   name={questionId}
-                  value={response.value}
-                  checked={isChecked(questionId, response.value)}
+                  value={props.values[idx]}
+                  checked={isChecked(questionId, props.values[idx])}
                   onChange={props.handleChange}
                   required
                 ></Input>

@@ -9,11 +9,9 @@ const AboutMe = (props) => {
     "I will think more about financial issues in my future.",
   ];
 
-  const responses = [
-    { name: "Not Likely", value: 1 },
-    { name: "Somewhat Likely", value: 2 },
-    { name: "Very Likely", value: 3 },
-  ];
+  const responses = ["Not Likely", "Somewhat Likely", "Very Likely"];
+
+  const values = ["1", "2", "3"];
 
   return (
     <>
@@ -34,6 +32,7 @@ const AboutMe = (props) => {
               data={props.data}
               handleChange={props.handleChange}
               responses={responses}
+              values={values}
               prompt={prompt}
               idx={idx}
               aboutMe={true}
