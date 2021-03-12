@@ -1,5 +1,5 @@
 import "../formInput.css";
-import React, { Component, Fragment, Redirect } from "react";
+import React, { Component, Fragment } from "react";
 import { AboutSection } from "./AboutSection.js";
 import { MultipleChoiceSection } from "./MultipleChoiceSection.js";
 import { FreeResponseSection } from "./FreeResponseSection.js";
@@ -136,8 +136,10 @@ class FormInputLayout extends Component {
       q12_answer: `${depositFormData.dollarAmount_6}.${depositFormData.centAmount_6}`,
       q13_answer: `${depositFormData.dollarAmount_7}.${depositFormData.centAmount_7}`,
     };
+
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
+
     var registerFormAnswerObj = {
       q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
       q18_answer: `${registerFormData.balanceDollarAmount_1}.${registerFormData.balanceCentAmount_1}`,
@@ -154,10 +156,12 @@ class FormInputLayout extends Component {
       ...aboutSectionAnswerObj,
       ...this.state.multipleChoiceData,
       ...this.state.freeResponseData.checkSlip,
+      ...this.state.personalFinanceData,
     };
+
     console.log("completedForm", completedForm);
 
-    var submitPath = this.props.posttest
+    var submitPath = this.props.postTest
       ? "postassessment/"
       : "preassessment/";
     DataManager.post(submitPath, completedForm).then(() => {
