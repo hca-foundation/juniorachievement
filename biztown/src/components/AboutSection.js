@@ -50,6 +50,7 @@ class AboutSection extends Component {
                 defaultValue={this.props.data.name}
                 maxLength="3"
                 onChange={this.props.handleChange}
+                required
               />
             </div>
           </li>
@@ -66,6 +67,7 @@ class AboutSection extends Component {
                   type="date"
                   defaultValue={this.props.data.birthDate}
                   onChange={this.props.handleChange}
+                  required
                 />
               </div>
             </div>
@@ -135,6 +137,7 @@ class AboutSection extends Component {
                 type="text"
                 defaultValue={this.props.data.teacher}
                 onChange={this.props.handleChange}
+                required
               />
             </div>
           </li>
@@ -170,6 +173,7 @@ function GradeComponent(props) {
           value={gradeOption}
           checked={props.grade === gradeOption}
           onChange={props.handleChange}
+          required
         />
         <label
           className="form-control-radio-label"
@@ -199,6 +203,7 @@ function ParticipationComponent(props) {
             value={participationOption}
             checked={props.participation === participationOption}
             onChange={props.handleChange}
+            required
           />
           <label
             className="form-control-radio-label"

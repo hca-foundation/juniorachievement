@@ -46,6 +46,15 @@ class FormInputLayout extends Component {
     };
   }
 
+  // handleSectionChange = (event, section) => {
+  //   const { name, value } = event.target;
+  //   this.setState((prevState) => {
+  //     var section = JSON.parse(JSON.stringify(prevState.section));
+  //     sectionData[name] = value;
+  //     return { sectionData };
+  //   });
+  // };
+
   handlePersonalFinanceSectionChange = (event) => {
     const { name, value } = event.target;
     this.setState((prevState) => {
