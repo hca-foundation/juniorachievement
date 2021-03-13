@@ -180,12 +180,22 @@ class FormInputLayout extends Component {
 
   validatePage = (requiredQuestions) => {
     for (let question of requiredQuestions) {
-      console.log(
-        "element value",
-        document.getElementById(`${question}`).value
-      );
+      const element = document.getElementById(`${question}`);
+
+      if (document.getElementById(`${question}`).type === "radio") {
+        const section = this.state.aboutData;
+
+        if (!(element.name in section)) {
+          alert(`Please choose an option for ${question}.`);
+          return false;
+        }
+      }
+
       if (document.getElementById(`${question}`).value === "") {
-        alert(`${question} must be filled out.`);
+        const editedString =
+          question[0].toUpperCase() + question.substring(1);
+
+        alert(`${editedString} must be filled out.`);
         return false;
       }
     }
@@ -196,9 +206,9 @@ class FormInputLayout extends Component {
 
     const aboutDataKeys = [
       "name",
-      "teacher",
       "birthDate",
       "grade",
+      "teacher",
       "participation",
       "school",
       "schoolDistrict",
