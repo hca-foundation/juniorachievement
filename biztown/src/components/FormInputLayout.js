@@ -178,14 +178,148 @@ class FormInputLayout extends Component {
     });
   };
 
+  validatePage = (requiredQuestions) => {
+    for (let question of requiredQuestions) {
+      console.log(
+        "element value",
+        document.getElementById(`${question}`).value
+      );
+      if (document.getElementById(`${question}`).value === "") {
+        alert(`${question} must be filled out.`);
+        return false;
+      }
+    }
+  };
+
   _next = (e) => {
     // this.handleSubmit(e)
+
+    const aboutDataKeys = [
+      "name",
+      "teacher",
+      "birthDate",
+      "grade",
+      "participation",
+      "school",
+      "schoolDistrict",
+    ];
+    const multipleChoiceDataKeys = [
+      "q01_answer",
+      "q02_answer",
+      "q03_answer",
+      "q04_answer",
+      "q05_answer",
+      "q06_answer",
+      "q07_answer",
+      "q08_answer",
+      "q09_answer",
+      "q10_answer",
+    ];
+
+    const aboutMeKeys = ["q23_answer", "q24_answer", "q25_answer"];
+
+    const aboutMyFutureKeys = [
+      "q26_answer",
+      "q27_answer",
+      "q28_answer",
+      "q29_answer",
+      "q30_answer",
+      "q31_answer",
+      "q32_answer",
+    ];
+
+    const aboutMyFacilitatorsKeys = [
+      "q33_answer",
+      "q34_answer",
+      "q35_answer",
+    ];
+
     let currentStep = this.state.currentStep;
-    currentStep = currentStep >= 5 ? 6 : currentStep + 1;
-    this.setState({
-      currentStep: currentStep,
-    });
-    e.preventDefault();
+
+    if (currentStep === 1 && this.validatePage(aboutDataKeys)) {
+      currentStep++;
+      this.setState({ currentStep: currentStep });
+      e.preventDefault();
+
+      // const section = this.state.aboutData;
+
+      // if (
+      //   section.name &&
+      //   section.birthDate &&
+      //   section.grade &&
+      //   section.teacher &&
+      //   section.participation
+      // ) {
+      //   currentStep++;
+      //   this.setState({ currentStep: currentStep });
+      //   e.preventDefault();
+      // }
+    }
+
+    // if (currentStep === 2) {
+    //   const section = this.state.multipleChoiceData;
+
+    //   if (
+    //     section.q01_answer &&
+    //     section.q02_answer &&
+    //     section.q03_answer &&
+    //     section.q04_answer &&
+    //     section.q05_answer &&
+    //     section.q06_answer &&
+    //     section.q07_answer &&
+    //     section.q08_answer &&
+    //     section.q09_answer &&
+    //     section.q10_answer
+    //   ) {
+    //     currentStep++;
+    //     this.setState({ currentStep: currentStep });
+    //     e.preventDefault();
+    //   }
+    // }
+
+    // if (currentStep === 3) {
+    //   currentStep++;
+    //   this.setState({ currentStep: currentStep });
+    //   e.preventDefault();
+    // }
+
+    // if (currentStep === 4) {
+    //   const section = this.state.personalFinanceData;
+
+    //   if (
+    //     section.q23_answer &&
+    //     section.q24_answer &&
+    //     section.q25_answer
+    //   ) {
+    //     currentStep++;
+    //     this.setState({ currentStep: currentStep });
+    //     e.preventDefault();
+    //   }
+    // }
+
+    // if (currentStep === 5 && this.props.postTest) {
+    //   const section = this.state.personalFinanceData;
+
+    //   if (
+    //     section.q26_answer &&
+    //     section.q27_answer &&
+    //     section.q28_answer &&
+    //     section.q29_answer &&
+    //     section.q30_answer &&
+    //     section.q31_answer &&
+    //     section.q32_answer
+    //   ) {
+    //     currentStep++;
+    //     this.setState({ currentStep: currentStep });
+    //     e.preventDefault();
+    //   }
+    // }
+
+    // currentStep = currentStep >= 5 ? 6 : currentStep + 1;
+    // this.setState({
+    //   currentStep: currentStep,
+    // });
+    // e.preventDefault();
   };
 
   _prev = () => {
