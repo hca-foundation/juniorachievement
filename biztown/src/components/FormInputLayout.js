@@ -199,6 +199,8 @@ class FormInputLayout extends Component {
         return false;
       }
     }
+
+    return true;
   };
 
   _next = (e) => {
