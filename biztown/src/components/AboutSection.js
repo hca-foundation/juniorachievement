@@ -17,7 +17,6 @@ class AboutSection extends Component {
         TODO:
         * update to use react-dates. date input not supported in safari.
         * add required flag to all inputs
-        * add school dropdown
     */
   render() {
     if (!Object.keys(this.props.schoolData).length) {
@@ -268,31 +267,5 @@ function SchoolSelectionComponent(props) {
     </Input>
   );
 }
-
-// const SchoolComponent = (props) => {
-//   //GET SCHOOL DISTRICTS
-//   const schoolDistricts = [];
-//   // FILTER SCHOOLS ACCORDING TO DISTRICT
-//   const [schools, setSchools] = useState();
-
-//   useEffect(() => {
-//     DataManager.getAll("schools").then((allSchools) => {
-//       setSchools(allSchools);
-//     });
-//   }, []);
-
-//   return (
-//     <>
-//       <select>
-//         {schools.map((school) => (
-//           <option value={school.school_name} key={school.school_name}>
-//             {school.school_name}
-//           </option>
-//         ))}
-//       </select>
-//       ;
-//     </>
-//   );
-// };
 
 export { AboutSection };
