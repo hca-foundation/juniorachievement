@@ -3,7 +3,7 @@
 // NOTE: ensure remoteURL is consistent with local back end url
 const remoteURL = "http://127.0.0.1:8000"; // || "http://localhost:8000"
 
-export default {
+const DataManager = {
   post(tab, obj) {
     return fetch(`${remoteURL}/${tab}`, {
       method: "POST",
@@ -24,3 +24,5 @@ export default {
     }).then((res) => res.json());
   },
 };
+
+export default DataManager;
