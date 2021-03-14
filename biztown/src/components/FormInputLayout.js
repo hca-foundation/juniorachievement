@@ -246,39 +246,38 @@ class FormInputLayout extends Component {
 
     let currentStep = this.state.currentStep;
 
-    if (currentStep === 1 && this.validatePage(aboutDataObj)) {
+    const incrementStepAndUpdateState = () => {
       currentStep++;
       this.setState({ currentStep: currentStep });
       e.preventDefault();
+    };
+
+    if (currentStep === 1 && this.validatePage(aboutDataObj)) {
+      incrementStepAndUpdateState();
       return;
     }
 
     if (currentStep === 2 && this.validatePage(multipleChoiceDataObj)) {
-      currentStep++;
-      this.setState({ currentStep: currentStep });
-      e.preventDefault();
+      incrementStepAndUpdateState();
       return;
     }
+
     if (currentStep === 3) {
-      currentStep++;
-      this.setState({ currentStep: currentStep });
-      e.preventDefault();
+      incrementStepAndUpdateState();
       return;
     }
+
     if (currentStep === 4 && this.validatePage(aboutMeObj)) {
-      currentStep++;
-      this.setState({ currentStep: currentStep });
-      e.preventDefault();
+      incrementStepAndUpdateState();
       return;
     }
+
     if (
       currentStep === 5 &&
       this.props.postTest &&
       this.validatePage(aboutMyFutureObj)
     ) {
-      currentStep++;
-      this.setState({ currentStep: currentStep });
-      e.preventDefault();
+      incrementStepAndUpdateState();
       return;
     }
   };
