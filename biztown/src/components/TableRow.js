@@ -28,6 +28,7 @@ const TableRow = (props) => {
               <Label check>
                 <Input
                   type="radio"
+                  id={questionId}
                   name={questionId}
                   value={props.values[idx]}
                   checked={isChecked(questionId, props.values[idx])}
@@ -48,6 +49,7 @@ const TableRow = (props) => {
               <Label check>
                 <Input
                   type="radio"
+                  id={questionId}
                   name={questionId}
                   value={props.values[idx]}
                   checked={isChecked(questionId, props.values[idx])}
@@ -68,6 +70,7 @@ const TableRow = (props) => {
               <Label check>
                 <Input
                   type="radio"
+                  id={questionId}
                   name={questionId}
                   value={props.values[idx]}
                   checked={isChecked(questionId, props.values[idx])}

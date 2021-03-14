@@ -178,12 +178,12 @@ class FormInputLayout extends Component {
     });
   };
 
-  validatePage = (requiredQuestions) => {
-    for (let question of requiredQuestions) {
+  validatePage = (pageObj) => {
+    for (let question of pageObj.keys) {
       const element = document.getElementById(`${question}`);
 
       if (document.getElementById(`${question}`).type === "radio") {
-        const section = this.state.aboutData;
+        const section = this.state[`${pageObj.title}`];
 
         if (!(element.name in section)) {
           alert(`Please choose an option for ${question}.`);
@@ -206,132 +206,90 @@ class FormInputLayout extends Component {
   _next = (e) => {
     // this.handleSubmit(e)
 
-    const aboutDataKeys = [
-      "name",
-      "birthDate",
-      "grade",
-      "teacher",
-      "participation",
-      "school",
-      "schoolDistrict",
-    ];
-    const multipleChoiceDataKeys = [
-      "q01_answer",
-      "q02_answer",
-      "q03_answer",
-      "q04_answer",
-      "q05_answer",
-      "q06_answer",
-      "q07_answer",
-      "q08_answer",
-      "q09_answer",
-      "q10_answer",
-    ];
+    const aboutDataObj = {
+      title: "aboutData",
+      keys: [
+        "name",
+        "birthDate",
+        "grade",
+        "teacher",
+        "participation",
+        "school",
+        "schoolDistrict",
+      ],
+    };
 
-    const aboutMeKeys = ["q23_answer", "q24_answer", "q25_answer"];
+    const multipleChoiceDataObj = {
+      title: "multipleChoiceData",
+      keys: [
+        "q01_answer",
+        "q02_answer",
+        "q03_answer",
+        "q04_answer",
+        "q05_answer",
+        "q06_answer",
+        "q07_answer",
+        "q08_answer",
+        "q09_answer",
+        "q10_answer",
+      ],
+    };
 
-    const aboutMyFutureKeys = [
-      "q26_answer",
-      "q27_answer",
-      "q28_answer",
-      "q29_answer",
-      "q30_answer",
-      "q31_answer",
-      "q32_answer",
-    ];
+    const aboutMeObj = {
+      title: "personalFinanceData",
+      keys: ["q23_answer", "q24_answer", "q25_answer"],
+    };
 
-    const aboutMyFacilitatorsKeys = [
-      "q33_answer",
-      "q34_answer",
-      "q35_answer",
-    ];
+    const aboutMyFutureObj = {
+      title: "personalFinanceData",
+      keys: [
+        "q26_answer",
+        "q27_answer",
+        "q28_answer",
+        "q29_answer",
+        "q30_answer",
+        "q31_answer",
+        "q32_answer",
+      ],
+    };
 
     let currentStep = this.state.currentStep;
 
-    if (currentStep === 1 && this.validatePage(aboutDataKeys)) {
+    if (currentStep === 1 && this.validatePage(aboutDataObj)) {
       currentStep++;
       this.setState({ currentStep: currentStep });
       e.preventDefault();
-
-      // const section = this.state.aboutData;
-
-      // if (
-      //   section.name &&
-      //   section.birthDate &&
-      //   section.grade &&
-      //   section.teacher &&
-      //   section.participation
-      // ) {
-      //   currentStep++;
-      //   this.setState({ currentStep: currentStep });
-      //   e.preventDefault();
-      // }
+      return;
     }
 
-    // if (currentStep === 2) {
-    //   const section = this.state.multipleChoiceData;
-
-    //   if (
-    //     section.q01_answer &&
-    //     section.q02_answer &&
-    //     section.q03_answer &&
-    //     section.q04_answer &&
-    //     section.q05_answer &&
-    //     section.q06_answer &&
-    //     section.q07_answer &&
-    //     section.q08_answer &&
-    //     section.q09_answer &&
-    //     section.q10_answer
-    //   ) {
-    //     currentStep++;
-    //     this.setState({ currentStep: currentStep });
-    //     e.preventDefault();
-    //   }
-    // }
-
-    // if (currentStep === 3) {
-    //   currentStep++;
-    //   this.setState({ currentStep: currentStep });
-    //   e.preventDefault();
-    // }
-
-    // if (currentStep === 4) {
-    //   const section = this.state.personalFinanceData;
-
-    //   if (
-    //     section.q23_answer &&
-    //     section.q24_answer &&
-    //     section.q25_answer
-    //   ) {
-    //     currentStep++;
-    //     this.setState({ currentStep: currentStep });
-    //     e.preventDefault();
-    //   }
-    // }
-
-    // if (currentStep === 5 && this.props.postTest) {
-    //   const section = this.state.personalFinanceData;
-
-    //   if (
-    //     section.q26_answer &&
-    //     section.q27_answer &&
-    //     section.q28_answer &&
-    //     section.q29_answer &&
-    //     section.q30_answer &&
-    //     section.q31_answer &&
-    //     section.q32_answer
-    //   ) {
-    //     currentStep++;
-    //     this.setState({ currentStep: currentStep });
-    //     e.preventDefault();
-    //   }
-    // }
-
-    // currentStep = currentStep >= 5 ? 6 : currentStep + 1;
-    // this.setState({
-    //   currentStep: currentStep,
-    // });
-    // e.preventDefault();
+    if (currentStep === 2 && this.validatePage(multipleChoiceDataObj)) {
+      currentStep++;
+      this.setState({ currentStep: currentStep });
+      e.preventDefault();
+      return;
+    }
+    if (currentStep === 3) {
+      currentStep++;
+      this.setState({ currentStep: currentStep });
+      e.preventDefault();
+      return;
+    }
+    if (currentStep === 4 && this.validatePage(aboutMeObj)) {
+      currentStep++;
+      this.setState({ currentStep: currentStep });
+      e.preventDefault();
+      return;
+    }
+    if (
+      currentStep === 5 &&
+      this.props.postTest &&
+      this.validatePage(aboutMyFutureObj)
+    ) {
+      currentStep++;
+      this.setState({ currentStep: currentStep });
+      e.preventDefault();
+      return;
+    }
   };
 
   _prev = () => {
