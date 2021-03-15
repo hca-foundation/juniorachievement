@@ -23,7 +23,7 @@ class FormInputLayout extends Component {
             rowSubtitle_2: "LIST CHECKS SINGLY",
             dollarAmount_2: "62",
             centAmount_2: "00",
-            rowSubtitle_5: "SUBTITLE",
+            rowSubtitle_5: "SUBTOTAL",
             rowSubtitle_6: "LESS CASH RECEIVED",
             rowSubtitle_7: "NET DEPOSIT",
           },
