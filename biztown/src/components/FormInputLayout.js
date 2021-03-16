@@ -119,14 +119,26 @@ class FormInputLayout extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // about section
-    var aboutSectionAnswerObj = { ...this.state.aboutData };
+    var aboutSectionData = { ...this.state.aboutData };
+
     // if other grade is included, submit other value as grade in form
-    if (aboutSectionAnswerObj.otherGrade) {
-      aboutSectionAnswerObj.grade = aboutSectionAnswerObj.otherGrade;
-      aboutSectionAnswerObj.otherGrade = null;
+    if (aboutSectionData.otherGrade) {
+      aboutSectionData.grade = aboutSectionData.otherGrade;
+      // THINK THIS CAN BE DELETED
+      aboutSectionData.otherGrade = null;
     }
     // remove school district from response
-    aboutSectionAnswerObj.schoolDistrict = null;
+    // THINK THIS CAN BE DELETED
+    aboutSectionData.schoolDistrict = null;
+
+    var aboutSectionAnswerObj = {
+      last_name: aboutSectionData.name,
+      birth_date: aboutSectionData.birthDate,
+      class_grade: aboutSectionData.grade,
+      teacher: aboutSectionData.teacher,
+      school: aboutSectionData.school,
+      previous_participation: aboutSectionData.participation,
+    };
 
     // format free response data
     var depositFormData = this.state.freeResponseData.depositForm
