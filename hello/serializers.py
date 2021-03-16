@@ -20,9 +20,8 @@ class PreAssessmentSerializer(serializers.HyperlinkedModelSerializer):
                   'q12_answer', 'q12_score', 'q13_answer', 'q13_score', 'q14_answer', 'q14_score', 'q15_answer',
                   'q15_score', 'q16_answer', 'q16_score', 'q17_answer', 'q17_score', 'q18_answer', 'q18_score',
                   'q19_answer', 'q19_score', 'q20_answer', 'q20_score', 'q21_answer', 'q21_score', 'q22_answer',
-                  'q22_score', 'q23_answer', 'q23_score', 'q24_answer', 'q24_score', 'q25_answer', 'q25_score',
-                  'q26_answer', 'q26_score', 'q27_answer', 'q27_score', 'q28_answer', 'q28_score', 'q29_answer',
-                  'q29_score', 'q30_answer', 'q30_score', 'q31_answer', 'q31_score', 'q32_answer', 'q32_score']
+                  'q22_score', 'q23_answer', 'q24_answer', 'q25_answer', 'q26_answer', 'q27_answer', 'q28_answer',
+                  'q29_answer', 'q30_answer', 'q31_answer', 'q32_answer']
 
 
 class PostAssessmentSerializer(serializers.HyperlinkedModelSerializer):
@@ -37,7 +36,5 @@ class PostAssessmentSerializer(serializers.HyperlinkedModelSerializer):
                   'q12_answer', 'q12_score', 'q13_answer', 'q13_score', 'q14_answer', 'q14_score', 'q15_answer',
                   'q15_score', 'q16_answer', 'q16_score', 'q17_answer', 'q17_score', 'q18_answer', 'q18_score',
                   'q19_answer', 'q19_score', 'q20_answer', 'q20_score', 'q21_answer', 'q21_score', 'q22_answer',
-                  'q22_score', 'q23_answer', 'q23_score', 'q24_answer', 'q24_score', 'q25_answer', 'q25_score',
-                  'q26_answer', 'q26_score', 'q27_answer', 'q27_score', 'q28_answer', 'q28_score', 'q29_answer',
-                  'q29_score', 'q30_answer', 'q30_score', 'q31_answer', 'q31_score', 'q32_answer', 'q32_score',
-                  'q33_answer', 'q33_score', 'q34_answer', 'q34_score', 'q35_answer', 'q35_score']
+                  'q22_score', 'q23_answer', 'q24_answer', 'q25_answer', 'q26_answer', 'q27_answer', 'q28_answer',
+                  'q29_answer', 'q30_answer', 'q31_answer', 'q32_answer', 'q33_answer', 'q34_answer', 'q35_answer']
