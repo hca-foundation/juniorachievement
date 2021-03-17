@@ -29,6 +29,7 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.birth_date = request.data['birth_date']
         assessment.school = request.data['school']
         assessment.previous_participation = request.data['previous_participation']
+        assessment.pretest = request.data['pretest']
         assessment.q01_answer = request.data['q01_answer']
         assessment.q02_answer = request.data['q02_answer']
         assessment.q03_answer = request.data['q03_answer']
@@ -64,6 +65,29 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.q33_answer = request.data['q33_answer']
         assessment.q34_answer = request.data['q34_answer']
         assessment.q35_answer = request.data['q35_answer']
+
+        # assessment.q01_score = 
+        # assessment.q02_score = 
+        # assessment.q03_score = 
+        # assessment.q04_score = 
+        # assessment.q05_score = 
+        # assessment.q06_score = 
+        # assessment.q07_score = 
+        # assessment.q08_score = 
+        # assessment.q09_score = 
+        # assessment.q10_score = 
+        # assessment.q11_score = 
+        # assessment.q12_score = 
+        # assessment.q13_score = 
+        # assessment.q14_score = 
+        # assessment.q15_score = 
+        # assessment.q16_score = 
+        # assessment.q17_score = 
+        # assessment.q18_score = 
+        # assessment.q19_score = 
+        # assessment.q20_score = 
+        # assessment.q21_score = 
+        # assessment.q22_score = 
 
 
         serializer = AssessmentSerializer(assessment, context={'request': request})

@@ -67,11 +67,9 @@ class Assessment(models.Model):
     q30_answer = models.CharField(max_length=200)
     q31_answer = models.CharField(max_length=200)
     q32_answer = models.CharField(max_length=200)
-
-    # ADD DEFAULT=""??
-    q33_answer = models.CharField(max_length=200)
-    q34_answer = models.CharField(max_length=200)
-    q35_answer = models.CharField(max_length=200)
+    q33_answer = models.CharField(max_length=200, default="")
+    q34_answer = models.CharField(max_length=200, default="")
+    q35_answer = models.CharField(max_length=200, default="")
 
 
 # class Preassessment(models.Model):
