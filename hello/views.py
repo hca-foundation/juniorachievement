@@ -64,9 +64,11 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.q30_answer = request.data['q30_answer']
         assessment.q31_answer = request.data['q31_answer']
         assessment.q32_answer = request.data['q32_answer']
-        assessment.q33_answer = request.data['q33_answer']
-        assessment.q34_answer = request.data['q34_answer']
-        assessment.q35_answer = request.data['q35_answer']
+
+        if assessment.pretest == True:
+            assessment.q33_answer = request.data['q33_answer']
+            assessment.q34_answer = request.data['q34_answer']
+            assessment.q35_answer = request.data['q35_answer']
 
         answerKey = {
             'q01_answer': 'b', 'q02_answer': 'b', 'q03_answer': 'a', 'q04_answer': 'c',

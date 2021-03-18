@@ -131,6 +131,12 @@ class FormInputLayout extends Component {
     // THINK THIS CAN BE DELETED
     aboutSectionData.schoolDistrict = null;
 
+    {
+      this.props.preTest
+        ? (aboutSectionData["pretest"] = true)
+        : (aboutSectionData["pretest"] = false);
+    }
+
     var aboutSectionAnswerObj = {
       last_name: aboutSectionData.name,
       birth_date: aboutSectionData.birthDate,
@@ -138,6 +144,7 @@ class FormInputLayout extends Component {
       teacher: aboutSectionData.teacher,
       school: aboutSectionData.school,
       previous_participation: aboutSectionData.participation,
+      pretest: aboutSectionData.pretest,
     };
 
     // format free response data
@@ -173,10 +180,10 @@ class FormInputLayout extends Component {
 
     console.log("completedForm", completedForm);
 
-    var submitPath = this.props.postTest
-      ? "postassessment/"
-      : "preassessment/";
-    DataManager.post(submitPath, completedForm).then(() => {
+    // var submitPath = this.props.postTest
+    //   ? "postassessment/"
+    //   : "preassessment/";
+    DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
     });
   };
