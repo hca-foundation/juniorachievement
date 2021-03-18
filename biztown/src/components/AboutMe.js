@@ -33,6 +33,7 @@ const AboutMe = (props) => {
               handleChange={props.handleChange}
               responses={responses}
               values={values}
+              questionId={`q${idx + 23}_answer`}
               prompt={prompt}
               idx={idx}
               aboutMe={true}

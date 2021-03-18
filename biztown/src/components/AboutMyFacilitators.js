@@ -39,6 +39,7 @@ const AboutMyFacilitators = (props) => {
               handleChange={props.handleChange}
               responses={responses}
               values={values}
+              questionId={`q${idx + 33}_answer`}
               prompt={prompt}
               idx={idx}
               aboutMyFacilitators={true}

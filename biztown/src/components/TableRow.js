@@ -2,15 +2,6 @@ import React from "react";
 import { Label, Input } from "reactstrap";
 
 const TableRow = (props) => {
-  let questionId = "";
-  if (props.aboutMe) {
-    questionId = `q${props.idx + 23}_answer`;
-  } else if (props.aboutMyFuture) {
-    questionId = `q${props.idx + 26}_answer`;
-  } else if (props.aboutMyFacilitators) {
-    questionId = `q${props.idx + 33}_answer`;
-  }
-
   const isChecked = (questionId, answer) => {
     var isTrue =
       questionId in props.data && props.data[questionId] === answer;
@@ -28,10 +19,13 @@ const TableRow = (props) => {
               <Label check>
                 <Input
                   type="radio"
-                  id={questionId}
-                  name={questionId}
+                  id={props.questionId}
+                  name={props.questionId}
                   value={props.values[idx]}
-                  checked={isChecked(questionId, props.values[idx])}
+                  checked={isChecked(
+                    props.questionId,
+                    props.values[idx]
+                  )}
                   onChange={props.handleChange}
                   required
                 ></Input>
@@ -49,10 +43,13 @@ const TableRow = (props) => {
               <Label check>
                 <Input
                   type="radio"
-                  id={questionId}
-                  name={questionId}
+                  id={props.questionId}
+                  name={props.questionId}
                   value={props.values[idx]}
-                  checked={isChecked(questionId, props.values[idx])}
+                  checked={isChecked(
+                    props.questionId,
+                    props.values[idx]
+                  )}
                   onChange={props.handleChange}
                   required
                 ></Input>
@@ -70,10 +67,13 @@ const TableRow = (props) => {
               <Label check>
                 <Input
                   type="radio"
-                  id={questionId}
-                  name={questionId}
+                  id={props.questionId}
+                  name={props.questionId}
                   value={props.values[idx]}
-                  checked={isChecked(questionId, props.values[idx])}
+                  checked={isChecked(
+                    props.questionId,
+                    props.values[idx]
+                  )}
                   onChange={props.handleChange}
                   required
                 ></Input>

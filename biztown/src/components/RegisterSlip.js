@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
 import "../checkInput.css";
-// import classNames from "classnames";
 
 const slipRowCount = 5;
 

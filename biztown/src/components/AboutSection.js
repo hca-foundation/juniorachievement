@@ -269,30 +269,4 @@ function SchoolSelectionComponent(props) {
   );
 }
 
-// const SchoolComponent = (props) => {
-//   //GET SCHOOL DISTRICTS
-//   const schoolDistricts = [];
-//   // FILTER SCHOOLS ACCORDING TO DISTRICT
-//   const [schools, setSchools] = useState();
-
-//   useEffect(() => {
-//     DataManager.getAll("schools").then((allSchools) => {
-//       setSchools(allSchools);
-//     });
-//   }, []);
-
-//   return (
-//     <>
-//       <select>
-//         {schools.map((school) => (
-//           <option value={school.school_name} key={school.school_name}>
-//             {school.school_name}
-//           </option>
-//         ))}
-//       </select>
-//       ;
-//     </>
-//   );
-// };
-
 export { AboutSection };
