@@ -54,7 +54,7 @@ class CheckSlip extends Component {
                 marginRight: "15px",
               }}
             >
-              April 20,
+              March 14,
             </span>
             <span>20</span>
             <span
