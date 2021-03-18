@@ -178,8 +178,6 @@ class FormInputLayout extends Component {
       ...this.state.personalFinanceData,
     };
 
-    console.log("completedForm", completedForm);
-
     // var submitPath = this.props.postTest
     //   ? "postassessment/"
     //   : "preassessment/";
@@ -214,8 +212,6 @@ class FormInputLayout extends Component {
   };
 
   _next = (e) => {
-    // this.handleSubmit(e)
-
     const aboutDataObj = {
       title: "aboutData",
       keys: [

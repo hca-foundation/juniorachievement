@@ -13,12 +13,6 @@ const participationOptions = [
 const gradeOptions = ["4th", "5th", "6th", "7th", "Other"];
 
 class AboutSection extends Component {
-  /*
-        TODO:
-        * update to use react-dates. date input not supported in safari.
-        * add required flag to all inputs
-        * add school dropdown
-    */
   render() {
     if (!Object.keys(this.props.schoolData).length) {
       DataManager.getAll("schools").then((data) => {
@@ -95,7 +89,6 @@ class AboutSection extends Component {
               </div>
             )}
           </li>
-          {/*<li> School Information </li> */}
           <li className="form-group">
             <div className="flex-column-container">
               <label className="form-question">
