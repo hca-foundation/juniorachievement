@@ -1,2 +1,2 @@
-DELETE FROM hello_preassessment
-WHERE id = 2;
+DELETE FROM hello_assessment
+WHERE id = 1;
