@@ -43,6 +43,7 @@ const LikertAboutMyFuture = (props) => {
               handleChange={props.handleChange}
               responses={responses}
               values={values}
+              questionId={`q${idx + 26}_answer`}
               prompt={prompt}
               idx={idx}
               aboutMyFuture={true}
