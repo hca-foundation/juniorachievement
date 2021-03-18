@@ -4,9 +4,9 @@ import { AboutSection } from "./AboutSection.js";
 import { MultipleChoiceSection } from "./MultipleChoiceSection.js";
 import { FreeResponseSection } from "./FreeResponseSection.js";
 import DataManager from "../modules/DataManager";
-import AboutMe from "./AboutMe";
-import AboutMyFuture from "./AboutMyFuture";
-import AboutMyFacilitators from "./AboutMyFacilitators";
+import LikertAboutMe from "./LikertAboutMe";
+import LikertAboutMyFuture from "./LikertAboutMyFuture";
+import LikertAboutMyFacilitators from "./LikertAboutMyFacilitators";
 import headerLogo from "./../JAInspiringHeader.png";
 
 class FormInputLayout extends Component {
@@ -159,8 +159,6 @@ class FormInputLayout extends Component {
       ...this.state.personalFinanceData,
     };
 
-    console.log("completedForm", completedForm);
-
     var submitPath = this.props.postTest
       ? "postassessment/"
       : "preassessment/";
@@ -195,8 +193,6 @@ class FormInputLayout extends Component {
   };
 
   _next = (e) => {
-    // this.handleSubmit(e)
-
     const aboutDataObj = {
       title: "aboutData",
       keys: [
@@ -226,12 +222,12 @@ class FormInputLayout extends Component {
       ],
     };
 
-    const aboutMeObj = {
+    const likertAboutMeObj = {
       title: "personalFinanceData",
       keys: ["q23_answer", "q24_answer", "q25_answer"],
     };
 
-    const aboutMyFutureObj = {
+    const likertAboutMyFutureObj = {
       title: "personalFinanceData",
       keys: [
         "q26_answer",
@@ -267,7 +263,7 @@ class FormInputLayout extends Component {
       return;
     }
 
-    if (currentStep === 4 && this.validatePage(aboutMeObj)) {
+    if (currentStep === 4 && this.validatePage(likertAboutMeObj)) {
       incrementStepAndUpdateState();
       return;
     }
@@ -275,7 +271,7 @@ class FormInputLayout extends Component {
     if (
       currentStep === 5 &&
       this.props.postTest &&
-      this.validatePage(aboutMyFutureObj)
+      this.validatePage(likertAboutMyFutureObj)
     ) {
       incrementStepAndUpdateState();
       return;
@@ -395,20 +391,20 @@ class FormInputLayout extends Component {
               />
             )}
             {currentStep === 4 && (
-              <AboutMe
+              <LikertAboutMe
                 handleChange={this.handlePersonalFinanceSectionChange}
                 data={this.state.personalFinanceData}
               />
             )}
             {currentStep === 5 && (
-              <AboutMyFuture
+              <LikertAboutMyFuture
                 handleChange={this.handlePersonalFinanceSectionChange}
                 data={this.state.personalFinanceData}
               />
             )}
 
             {this.props.postTest && currentStep === 6 && (
-              <AboutMyFacilitators
+              <LikertAboutMyFacilitators
                 handleChange={this.handlePersonalFinanceSectionChange}
                 data={this.state.personalFinanceData}
               />

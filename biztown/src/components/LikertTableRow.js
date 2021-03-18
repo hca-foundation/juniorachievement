@@ -1,7 +1,7 @@
 import React from "react";
 import { Label, Input } from "reactstrap";
 
-const TableRow = (props) => {
+const LikertTableRow = (props) => {
   let questionId = "";
   if (props.aboutMe) {
     questionId = `q${props.idx + 23}_answer`;
@@ -86,4 +86,4 @@ const TableRow = (props) => {
   );
 };
 
-export default TableRow;
+export default LikertTableRow;

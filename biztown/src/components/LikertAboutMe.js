@@ -1,8 +1,8 @@
 import React from "react";
-import TableRow from "./TableRow";
+import LikertTableRow from "./LikertTableRow";
 import { Table } from "reactstrap";
 
-const AboutMe = (props) => {
+const LikertAboutMe = (props) => {
   const prompts = [
     "I plan to start using a personal budget.",
     "I intend to start saving money for the future.",
@@ -27,7 +27,7 @@ const AboutMe = (props) => {
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
-            <TableRow
+            <LikertTableRow
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}
@@ -44,4 +44,4 @@ const AboutMe = (props) => {
   );
 };
 
-export default AboutMe;
+export default LikertAboutMe;

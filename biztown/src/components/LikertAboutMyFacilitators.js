@@ -1,18 +1,8 @@
 import React from "react";
-import TableRow from "./TableRow";
+import LikertTableRow from "./LikertTableRow";
 import { Table } from "reactstrap";
 
-const AboutMyFuture = (props) => {
-  const prompts = [
-    "I will set goals for my future.",
-    "I feel in control over how my future will turn out.",
-    "Doing well at school is important to me.",
-    "I expect to graduate from high school.",
-    "I plan to attend at least two years in college.",
-    "I think I will probably graduate from college.",
-    "I believe I can create my own future.",
-  ];
-
+const LikertAboutMyFacilitators = (props) => {
   const responses = [
     "Disagree",
     "Slightly Disagree",
@@ -22,13 +12,19 @@ const AboutMyFuture = (props) => {
 
   const values = ["1", "2", "3", "4"];
 
+  const prompts = [
+    "My instructor/volunteer made a connection between real life and what I learned in the classroom.",
+    "My instructor/volunteer helped me to realize the importance of staying in school.",
+    "My instructor/volunteer’s personal stories motivated me.",
+  ];
+
   return (
     <>
       <Table>
         <thead>
           <tr>
             <th></th>
-            <th>ABOUT MY FUTURE...</th>
+            <th>ABOUT MY FACILITATORS...</th>
             <th>Disagree</th>
             <th>Slightly Disagree</th>
             <th>Slightly Agree</th>
@@ -37,7 +33,7 @@ const AboutMyFuture = (props) => {
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
-            <TableRow
+            <LikertTableRow
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}
@@ -45,7 +41,7 @@ const AboutMyFuture = (props) => {
               values={values}
               prompt={prompt}
               idx={idx}
-              aboutMyFuture={true}
+              aboutMyFacilitators={true}
             />
           ))}
         </tbody>
@@ -54,4 +50,4 @@ const AboutMyFuture = (props) => {
   );
 };
 
-export default AboutMyFuture;
+export default LikertAboutMyFacilitators;
