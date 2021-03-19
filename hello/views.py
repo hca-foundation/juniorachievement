@@ -70,39 +70,29 @@ class AssessmentViewset(viewsets.ViewSet):
             assessment.q34_answer = request.data['q34_answer']
             assessment.q35_answer = request.data['q35_answer']
 
-        answerKey = {
-            'q01_answer': 'b', 'q02_answer': 'b', 'q03_answer': 'a', 'q04_answer': 'c',
-            'q05_answer': 'd', 'q06_answer': 'b', 'q07_answer': 'd', 'q08_answer': 'b',
-            'q09_answer': 'd', 'q10_answer': 'a', 'q11_answer': '62', 'q12_answer': '20',
-            'q13_answer': '42', 'q14_answer': 'Macy\'s', 'q15_answer': 'Three and 75/100',
-            'q16_answer': '', 'q17_answer': '3.75', 'q18_answer': '21.25', 'q19_answer': 'Journeys',
-            'q20_answer': '5.00', 'q21_answer': '5.00', 'q22_answer': '16.25'
-        }
-
         # FIGURE OUT HOW LENIENT GRADING SHOULD BE
-
-        assessment.q01_score = 1 if assessment.q01_answer == answerKey["q01_answer"] else 0
-        assessment.q02_score = 1 if assessment.q02_answer == answerKey['q02_answer'] else 0
-        assessment.q03_score = 1 if assessment.q03_answer == answerKey['q03_answer'] else 0
-        assessment.q04_score = 1 if assessment.q04_answer == answerKey['q04_answer'] else 0
-        assessment.q05_score = 1 if assessment.q05_answer == answerKey['q05_answer'] else 0
-        assessment.q06_score = 1 if assessment.q06_answer == answerKey['q06_answer'] else 0
-        assessment.q07_score = 1 if assessment.q07_answer == answerKey['q07_answer'] else 0
-        assessment.q08_score = 1 if assessment.q08_answer == answerKey['q08_answer'] else 0
-        assessment.q09_score = 1 if assessment.q09_answer == answerKey['q09_answer'] else 0
-        assessment.q10_score = 1 if assessment.q10_answer == answerKey['q10_answer'] else 0
-        assessment.q11_score = 1 if assessment.q11_answer == answerKey['q11_answer'] else 0
-        assessment.q12_score = 1 if assessment.q12_answer == answerKey['q12_answer'] else 0
-        assessment.q13_score = 1 if assessment.q13_answer == answerKey['q13_answer'] else 0
-        assessment.q14_score = 1 if assessment.q14_answer == answerKey['q14_answer'] else 0
-        assessment.q15_score = 1 if assessment.q15_answer == answerKey['q15_answer'] else 0
-        assessment.q16_score = 1 if assessment.q16_answer == answerKey['q16_answer'] else 0
-        assessment.q17_score = 1 if assessment.q17_answer == answerKey['q17_answer'] else 0
-        assessment.q18_score = 1 if assessment.q18_answer == answerKey['q18_answer'] else 0
-        assessment.q19_score = 1 if assessment.q19_answer == answerKey['q19_answer'] else 0
-        assessment.q20_score = 1 if assessment.q20_answer == answerKey['q20_answer'] else 0
-        assessment.q21_score = 1 if assessment.q21_answer == answerKey['q21_answer'] else 0
-        assessment.q22_score = 1 if assessment.q22_answer == answerKey['q22_answer'] else 0
+        assessment.q01_score = 1 if assessment.q01_answer == 'b' else 0
+        assessment.q02_score = 1 if assessment.q02_answer == 'b' else 0
+        assessment.q03_score = 1 if assessment.q03_answer == 'a' else 0
+        assessment.q04_score = 1 if assessment.q04_answer == 'c' else 0
+        assessment.q05_score = 1 if assessment.q05_answer == 'd' else 0
+        assessment.q06_score = 1 if assessment.q06_answer == 'b' else 0
+        assessment.q07_score = 1 if assessment.q07_answer == 'd' else 0
+        assessment.q08_score = 1 if assessment.q08_answer == 'b' else 0
+        assessment.q09_score = 1 if assessment.q09_answer == 'd' else 0
+        assessment.q10_score = 1 if assessment.q10_answer == 'a' else 0
+        assessment.q11_score = 1 if assessment.q11_answer == '62' else 0
+        assessment.q12_score = 1 if assessment.q12_answer == '20' else 0
+        assessment.q13_score = 1 if assessment.q13_answer == '42' else 0
+        assessment.q14_score = 1 if assessment.q14_answer == 'Macy\'s' else 0
+        assessment.q15_score = 1 if assessment.q15_answer == 'Three and 75/100' else 0
+        assessment.q16_score = 1 if assessment.q16_answer == '' else 0
+        assessment.q17_score = 1 if assessment.q17_answer == '3.75' else 0
+        assessment.q18_score = 1 if assessment.q18_answer == '21.25' else 0
+        assessment.q19_score = 1 if assessment.q19_answer == 'Journeys' else 0
+        assessment.q20_score = 1 if assessment.q20_answer == '5.00' else 0
+        assessment.q21_score = 1 if assessment.q21_answer == '5.00' else 0
+        assessment.q22_score = 1 if assessment.q22_answer == '16.25' else 0
         assessment.save()
         
 
