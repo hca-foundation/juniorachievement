@@ -168,6 +168,10 @@ class FormInputLayout extends Component {
   };
 
   validatePage = (pageObj) => {
+    if (pageObj === "fill-in-the-blank-page") {
+      return true;
+    }
+
     for (let question of pageObj.keys) {
       const element = document.getElementById(`${question}`);
 
@@ -240,6 +244,14 @@ class FormInputLayout extends Component {
       ],
     };
 
+    const pageObjList = [
+      aboutDataObj,
+      multipleChoiceDataObj,
+      "fill-in-the-blank-page",
+      likertAboutMeObj,
+      likertAboutMyFutureObj,
+    ];
+
     let currentStep = this.state.currentStep;
 
     const incrementStepAndUpdateState = () => {
@@ -248,31 +260,7 @@ class FormInputLayout extends Component {
       e.preventDefault();
     };
 
-    if (currentStep === 1 && this.validatePage(aboutDataObj)) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (currentStep === 2 && this.validatePage(multipleChoiceDataObj)) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (currentStep === 3) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (currentStep === 4 && this.validatePage(likertAboutMeObj)) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (
-      currentStep === 5 &&
-      this.props.postTest &&
-      this.validatePage(likertAboutMyFutureObj)
-    ) {
+    if (this.validatePage(pageObjList[currentStep - 1])) {
       incrementStepAndUpdateState();
       return;
     }
