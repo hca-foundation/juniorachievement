@@ -307,12 +307,9 @@ class FormInputLayout extends Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
+
     if (currentStep === 5 && this.props.preTest) {
-      return (
-        <button className="btn btn-success btn-block float-right navigation-btn">
-          Submit
-        </button>
-      );
+      return null;
     } else if (currentStep < 6) {
       return (
         <button
@@ -329,7 +326,11 @@ class FormInputLayout extends Component {
 
   submitButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep === 6) {
+
+    if (
+      (currentStep === 5 && this.props.preTest) ||
+      currentStep === 6
+    ) {
       return (
         <button className="btn btn-success btn-block float-right navigation-btn">
           Submit
