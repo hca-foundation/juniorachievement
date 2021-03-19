@@ -259,6 +259,13 @@ class FormInputLayout extends Component {
       ],
     };
 
+    const pageObjList = [
+      aboutDataObj,
+      multipleChoiceDataObj,
+      aboutMeObj,
+      aboutMyFutureObj,
+    ];
+
     let currentStep = this.state.currentStep;
 
     const incrementStepAndUpdateState = () => {
@@ -266,6 +273,14 @@ class FormInputLayout extends Component {
       this.setState({ currentStep: currentStep });
       e.preventDefault();
     };
+
+    // if (currentStep === 3) {
+    //   incrementStepAndUpdateState();
+    //   return;
+    // } else if (this.validatePage(pageObjList[currentStep - 1])) {
+    //   incrementStepAndUpdateState();
+    //   return;
+    // }
 
     if (currentStep === 1 && this.validatePage(aboutDataObj)) {
       incrementStepAndUpdateState();
@@ -326,12 +341,9 @@ class FormInputLayout extends Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
+
     if (currentStep === 5 && this.props.preTest) {
-      return (
-        <button className="btn btn-success btn-block float-right navigation-btn">
-          Submit
-        </button>
-      );
+      return null;
     } else if (currentStep < 6) {
       return (
         <button
@@ -348,7 +360,10 @@ class FormInputLayout extends Component {
 
   submitButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep === 6) {
+    if (
+      (currentStep === 5 && this.props.preTest) ||
+      currentStep === 6
+    ) {
       return (
         <button className="btn btn-success btn-block float-right navigation-btn">
           Submit
