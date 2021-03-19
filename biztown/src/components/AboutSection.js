@@ -16,7 +16,6 @@ class AboutSection extends Component {
   /*
         TODO:
         * update to use react-dates. date input not supported in safari.
-        * add required flag to all inputs
   */
   render() {
     if (!Object.keys(this.props.schoolData).length) {
