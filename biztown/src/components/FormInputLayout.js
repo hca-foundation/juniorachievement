@@ -131,11 +131,9 @@ class FormInputLayout extends Component {
     // THINK THIS CAN BE DELETED
     aboutSectionData.schoolDistrict = null;
 
-    {
-      this.props.preTest
-        ? (aboutSectionData["pretest"] = true)
-        : (aboutSectionData["pretest"] = false);
-    }
+    this.props.preTest
+      ? (aboutSectionData["pretest"] = true)
+      : (aboutSectionData["pretest"] = false);
 
     var aboutSectionAnswerObj = {
       last_name: aboutSectionData.name,
@@ -187,6 +185,10 @@ class FormInputLayout extends Component {
   };
 
   validatePage = (pageObj) => {
+    if (pageObj === "fill-in-the-blank-page") {
+      return true;
+    }
+
     for (let question of pageObj.keys) {
       const element = document.getElementById(`${question}`);
 
@@ -241,12 +243,12 @@ class FormInputLayout extends Component {
       ],
     };
 
-    const aboutMeObj = {
+    const likertAboutMeObj = {
       title: "personalFinanceData",
       keys: ["q23_answer", "q24_answer", "q25_answer"],
     };
 
-    const aboutMyFutureObj = {
+    const likertAboutMyFutureObj = {
       title: "personalFinanceData",
       keys: [
         "q26_answer",
@@ -262,8 +264,9 @@ class FormInputLayout extends Component {
     const pageObjList = [
       aboutDataObj,
       multipleChoiceDataObj,
-      aboutMeObj,
-      aboutMyFutureObj,
+      "fill-in-the-blank-page",
+      likertAboutMeObj,
+      likertAboutMyFutureObj,
     ];
 
     let currentStep = this.state.currentStep;
@@ -274,39 +277,7 @@ class FormInputLayout extends Component {
       e.preventDefault();
     };
 
-    // if (currentStep === 3) {
-    //   incrementStepAndUpdateState();
-    //   return;
-    // } else if (this.validatePage(pageObjList[currentStep - 1])) {
-    //   incrementStepAndUpdateState();
-    //   return;
-    // }
-
-    if (currentStep === 1 && this.validatePage(aboutDataObj)) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (currentStep === 2 && this.validatePage(multipleChoiceDataObj)) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (currentStep === 3) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (currentStep === 4 && this.validatePage(aboutMeObj)) {
-      incrementStepAndUpdateState();
-      return;
-    }
-
-    if (
-      currentStep === 5 &&
-      this.props.postTest &&
-      this.validatePage(aboutMyFutureObj)
-    ) {
+    if (this.validatePage(pageObjList[currentStep - 1])) {
       incrementStepAndUpdateState();
       return;
     }
