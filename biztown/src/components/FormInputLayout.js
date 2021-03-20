@@ -159,11 +159,11 @@ class FormInputLayout extends Component {
 
     var registerFormAnswerObj = {
       q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
-      q18_answer: `${registerFormData.balanceDollarAmount_1}.${registerFormData.balanceCentAmount_1}`,
+      q18_answer: registerFormData.entryNumber_2,
       q19_answer: registerFormData.transactionDesc_2,
       q20_answer: `${registerFormData.paymentDollarAmount_2}.${registerFormData.paymentCentAmount_2}`,
       q21_answer: `${registerFormData.balanceDollarAmount_2}.${registerFormData.balanceCentAmount_2}`,
-      q22_answer: `${registerFormData.balanceDollarAmount_3}.${registerFormData.balanceCentAmount_3}`,
+      q22_answer: "",
     };
 
     // construct completed form from different objects
@@ -175,6 +175,8 @@ class FormInputLayout extends Component {
       ...this.state.freeResponseData.checkSlip,
       ...this.state.personalFinanceData,
     };
+
+    console.log(completedForm);
 
     // var submitPath = this.props.postTest
     //   ? "postassessment/"
