@@ -176,11 +176,6 @@ class FormInputLayout extends Component {
       ...this.state.personalFinanceData,
     };
 
-    console.log(completedForm);
-
-    // var submitPath = this.props.postTest
-    //   ? "postassessment/"
-    //   : "preassessment/";
     DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
     });
