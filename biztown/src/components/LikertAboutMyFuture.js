@@ -1,8 +1,8 @@
 import React from "react";
-import TableRow from "./TableRow";
+import LikertTableRow from "./LikertTableRow";
 import { Table } from "reactstrap";
 
-const AboutMyFuture = (props) => {
+const LikertAboutMyFuture = (props) => {
   const prompts = [
     "I will set goals for my future.",
     "I feel in control over how my future will turn out.",
@@ -37,7 +37,7 @@ const AboutMyFuture = (props) => {
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
-            <TableRow
+            <LikertTableRow
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}
@@ -55,4 +55,4 @@ const AboutMyFuture = (props) => {
   );
 };
 
-export default AboutMyFuture;
+export default LikertAboutMyFuture;

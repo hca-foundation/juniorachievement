@@ -3,7 +3,7 @@ import { Component } from "react";
 class MultipleChoiceSection extends Component {
   /*
     POST MVP STATE:
-      have these questions editable on the client by users
+    * have these questions editable on the client by users
   */
   render() {
     var multipleChoiceQuestions = [

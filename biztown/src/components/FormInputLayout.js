@@ -4,9 +4,9 @@ import { AboutSection } from "./AboutSection.js";
 import { MultipleChoiceSection } from "./MultipleChoiceSection.js";
 import { FreeResponseSection } from "./FreeResponseSection.js";
 import DataManager from "../modules/DataManager";
-import AboutMe from "./AboutMe";
-import AboutMyFuture from "./AboutMyFuture";
-import AboutMyFacilitators from "./AboutMyFacilitators";
+import LikertAboutMe from "./LikertAboutMe";
+import LikertAboutMyFuture from "./LikertAboutMyFuture";
+import LikertAboutMyFacilitators from "./LikertAboutMyFacilitators";
 import headerLogo from "./../JAInspiringHeader.png";
 
 class FormInputLayout extends Component {
@@ -400,7 +400,7 @@ class FormInputLayout extends Component {
               />
             )}
             {currentStep === 4 && (
-              <AboutMe
+              <LikertAboutMe
                 handleChange={(e) =>
                   this.handlePersonalFinanceSectionChange("aboutMe", e)
                 }
@@ -408,7 +408,7 @@ class FormInputLayout extends Component {
               />
             )}
             {currentStep === 5 && (
-              <AboutMyFuture
+              <LikertAboutMyFuture
                 handleChange={(e) =>
                   this.handlePersonalFinanceSectionChange(
                     "aboutMyFuture",
@@ -420,7 +420,7 @@ class FormInputLayout extends Component {
             )}
 
             {this.props.postTest && currentStep === 6 && (
-              <AboutMyFacilitators
+              <LikertAboutMyFacilitators
                 handleChange={(e) =>
                   this.handlePersonalFinanceSectionChange(
                     "aboutMyFacilitators",

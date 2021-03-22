@@ -1,7 +1,7 @@
 import React from "react";
 import { Label, Input } from "reactstrap";
 
-const TableRow = (props) => {
+const LikertTableRow = (props) => {
   const isChecked = (questionId, answer) => {
     var isTrue =
       questionId in props.data && props.data[questionId] === answer;
@@ -86,4 +86,4 @@ const TableRow = (props) => {
   );
 };
 
-export default TableRow;
+export default LikertTableRow;

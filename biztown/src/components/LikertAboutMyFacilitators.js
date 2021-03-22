@@ -1,8 +1,8 @@
 import React from "react";
-import TableRow from "./TableRow";
+import LikertTableRow from "./LikertTableRow";
 import { Table } from "reactstrap";
 
-const AboutMyFacilitators = (props) => {
+const LikertAboutMyFacilitators = (props) => {
   const responses = [
     "Disagree",
     "Slightly Disagree",
@@ -33,7 +33,7 @@ const AboutMyFacilitators = (props) => {
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
-            <TableRow
+            <LikertTableRow
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}
@@ -51,4 +51,4 @@ const AboutMyFacilitators = (props) => {
   );
 };
 
-export default AboutMyFacilitators;
+export default LikertAboutMyFacilitators;
