@@ -14,9 +14,28 @@ class FormInputLayout extends Component {
     super(props);
     this.state = {
       currentStep: 1,
-      aboutData: {},
+      aboutData: {
+        name: "",
+        birthDate: "",
+        grade: "",
+        teacher: "",
+        participation: "",
+        school: "",
+        schoolDistrict: "",
+      },
       schoolData: {},
-      multipleChoiceData: {},
+      multipleChoiceData: {
+        q01_answer: "",
+        q02_answer: "",
+        q03_answer: "",
+        q04_answer: "",
+        q05_answer: "",
+        q06_answer: "",
+        q07_answer: "",
+        q08_answer: "",
+        q09_answer: "",
+        q10_answer: "",
+      },
       freeResponseData: {
         depositForm: {
           prepopulatedRows: {
@@ -27,9 +46,17 @@ class FormInputLayout extends Component {
             rowSubtitle_6: "LESS CASH RECEIVED",
             rowSubtitle_7: "NET DEPOSIT",
           },
-          rowEntries: {},
+          rowEntries: {
+            q11_answer: "",
+            q12_answer: "",
+            q13_answer: "",
+          },
         },
-        checkSlip: {},
+        checkSlip: {
+          q14_answer: "",
+          q15_answer: "",
+          q16_answer: "",
+        },
         registerEntries: {
           prepopulatedRows: {
             entryNumber_0: "007",
@@ -39,7 +66,14 @@ class FormInputLayout extends Component {
             paymentCentAmount_0: "75",
             date_2: "3/14",
           },
-          rowEntries: {},
+          rowEntries: {
+            q17_answer: "",
+            q18_answer: "",
+            q19_answer: "",
+            q20_answer: "",
+            q21_answer: "",
+            q22_answer: "",
+          },
         },
       },
       personalFinanceData: {},
@@ -157,6 +191,8 @@ class FormInputLayout extends Component {
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
 
+    console.log(registerFormData);
+
     var registerFormAnswerObj = {
       q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
       q18_answer: registerFormData.entryNumber_2,
@@ -171,10 +207,13 @@ class FormInputLayout extends Component {
       ...depositFormAnswerObj,
       ...registerFormAnswerObj,
       ...aboutSectionAnswerObj,
+      ...registerFormData,
       ...this.state.multipleChoiceData,
       ...this.state.freeResponseData.checkSlip,
       ...this.state.personalFinanceData,
     };
+
+    console.log(completedForm);
 
     DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
