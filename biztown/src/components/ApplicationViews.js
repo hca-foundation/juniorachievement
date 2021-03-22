@@ -1,43 +1,33 @@
-
 import React from "react";
 import { Route } from "react-router-dom";
-import  { FormInputLayout } from "./FormInputLayout.js"
-import  { TestRoutePage } from "./TestRoutePage.js"
+import { FormInputLayout } from "./FormInputLayout.js";
+import { TestRoutePage } from "./TestRoutePage.js";
 
 const ApplicationViews = () => {
-
-  return(
+  return (
     <>
+      <Route exact path="/" render={() => <TestRoutePage />} />
       <Route
-        exact path="/"
-        render={()=> (
-          <TestRoutePage />
+        exact
+        path="/pretest"
+        render={(props) => (
+          <FormInputLayout preTest={true} {...props} />
         )}
       />
       <Route
-        exact path="/pretest/"
-        render={()=> (
-          <FormInputLayout
-            pretest={true}
-          />
+        exact
+        path="/posttest"
+        render={(props) => (
+          <FormInputLayout postTest={true} {...props} />
         )}
       />
       <Route
-        exact path="/posttest"
-        render={()=> (
-          <FormInputLayout
-            posttest={true}
-          />
-        )}
-      />
-      <Route
-        exact path="/completionPage"
-        render={()=> (
-          <div>Complete!!</div>
-        )}
+        exact
+        path="/completionpage"
+        render={() => <div>Complete!!</div>}
       />
     </>
-  )
-}
+  );
+};
 
-export default ApplicationViews
+export default ApplicationViews;
