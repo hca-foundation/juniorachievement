@@ -76,17 +76,37 @@ class FormInputLayout extends Component {
           },
         },
       },
-      personalFinanceData: {},
+      personalFinanceData: {
+        aboutMe: {
+          q23_answer: "",
+          q24_answer: "",
+          q25_answer: "",
+        },
+        aboutMyFuture: {
+          q26_answer: "",
+          q27_answer: "",
+          q28_answer: "",
+          q29_answer: "",
+          q30_answer: "",
+          q31_answer: "",
+          q32_answer: "",
+        },
+        aboutMyFacilitators: {
+          q33_answer: "",
+          q34_answer: "",
+          q35_answer: "",
+        },
+      },
     };
   }
 
-  handlePersonalFinanceSectionChange = (event) => {
+  handlePersonalFinanceSectionChange = (section, event) => {
     const { name, value } = event.target;
     this.setState((prevState) => {
       var personalFinanceData = JSON.parse(
         JSON.stringify(prevState.personalFinanceData)
       );
-      personalFinanceData[name] = value;
+      personalFinanceData[section][name] = value;
       return { personalFinanceData };
     });
   };
@@ -191,8 +211,6 @@ class FormInputLayout extends Component {
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
 
-    console.log(registerFormData);
-
     var registerFormAnswerObj = {
       q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
       q18_answer: registerFormData.entryNumber_2,
@@ -202,15 +220,32 @@ class FormInputLayout extends Component {
       q22_answer: "",
     };
 
+    var personalFinanceData = this.state.personalFinanceData;
+
+    var personalFinanceAnswerObj = {
+      q23_answer: personalFinanceData.aboutMe.q23_answer,
+      q24_answer: personalFinanceData.aboutMe.q24_answer,
+      q25_answer: personalFinanceData.aboutMe.q25_answer,
+      q26_answer: personalFinanceData.aboutMyFuture.q26_answer,
+      q27_answer: personalFinanceData.aboutMyFuture.q27_answer,
+      q28_answer: personalFinanceData.aboutMyFuture.q28_answer,
+      q29_answer: personalFinanceData.aboutMyFuture.q29_answer,
+      q30_answer: personalFinanceData.aboutMyFuture.q30_answer,
+      q31_answer: personalFinanceData.aboutMyFuture.q31_answer,
+      q32_answer: personalFinanceData.aboutMyFuture.q32_answer,
+      q33_answer: personalFinanceData.aboutMyFacilitators.q33_answer,
+      q34_answer: personalFinanceData.aboutMyFacilitators.q34_answer,
+      q35_answer: personalFinanceData.aboutMyFacilitators.q35_answer,
+    };
+
     // construct completed form from different objects
     var completedForm = {
       ...depositFormAnswerObj,
       ...registerFormAnswerObj,
       ...aboutSectionAnswerObj,
-      ...registerFormData,
       ...this.state.multipleChoiceData,
       ...this.state.freeResponseData.checkSlip,
-      ...this.state.personalFinanceData,
+      ...personalFinanceAnswerObj,
     };
 
     console.log(completedForm);
@@ -433,21 +468,35 @@ class FormInputLayout extends Component {
             )}
             {currentStep === 4 && (
               <AboutMe
-                handleChange={this.handlePersonalFinanceSectionChange}
-                data={this.state.personalFinanceData}
+                handleChange={(e) =>
+                  this.handlePersonalFinanceSectionChange("aboutMe", e)
+                }
+                data={this.state.personalFinanceData.aboutMe}
               />
             )}
             {currentStep === 5 && (
               <AboutMyFuture
-                handleChange={this.handlePersonalFinanceSectionChange}
-                data={this.state.personalFinanceData}
+                handleChange={(e) =>
+                  this.handlePersonalFinanceSectionChange(
+                    "aboutMyFuture",
+                    e
+                  )
+                }
+                data={this.state.personalFinanceData.aboutMyFuture}
               />
             )}
 
             {this.props.postTest && currentStep === 6 && (
               <AboutMyFacilitators
-                handleChange={this.handlePersonalFinanceSectionChange}
-                data={this.state.personalFinanceData}
+                handleChange={(e) =>
+                  this.handlePersonalFinanceSectionChange(
+                    "aboutMyFacilitators",
+                    e
+                  )
+                }
+                data={
+                  this.state.personalFinanceData.aboutMyFacilitators
+                }
               />
             )}
             <div className="page-nav-buttons">
