@@ -178,17 +178,13 @@ class FormInputLayout extends Component {
     // if other grade is included, submit other value as grade in form
     if (aboutSectionData.otherGrade) {
       aboutSectionData.grade = aboutSectionData.otherGrade;
-      // THINK THIS CAN BE DELETED
-      aboutSectionData.otherGrade = null;
     }
-    // remove school district from response
-    // THINK THIS CAN BE DELETED
-    aboutSectionData.schoolDistrict = null;
 
     this.props.preTest
       ? (aboutSectionData["pretest"] = true)
       : (aboutSectionData["pretest"] = false);
 
+    // remove school district & otherGrade(if exists) from response and add pretest property
     var aboutSectionAnswerObj = {
       last_name: aboutSectionData.name,
       birth_date: aboutSectionData.birthDate,
@@ -210,7 +206,6 @@ class FormInputLayout extends Component {
 
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
-
     var registerFormAnswerObj = {
       q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
       q18_answer: registerFormData.entryNumber_2,
@@ -220,8 +215,8 @@ class FormInputLayout extends Component {
       q22_answer: "",
     };
 
+    // construct personal finance data
     var personalFinanceData = this.state.personalFinanceData;
-
     var personalFinanceAnswerObj = {
       q23_answer: personalFinanceData.aboutMe.q23_answer,
       q24_answer: personalFinanceData.aboutMe.q24_answer,
@@ -248,96 +243,34 @@ class FormInputLayout extends Component {
       ...personalFinanceAnswerObj,
     };
 
-    console.log(completedForm);
-
     DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
     });
   };
 
   validatePage = (pageObj) => {
+    // this section's questions aren't required
     if (pageObj === "fill-in-the-blank-page") {
       return true;
     }
 
-    for (let question of pageObj.keys) {
-      const element = document.getElementById(`${question}`);
-
-      if (document.getElementById(`${question}`).type === "radio") {
-        const section = this.state[`${pageObj.title}`];
-
-        if (!(element.name in section)) {
-          alert(`Please choose an option for ${question}.`);
-          return false;
-        }
-      }
-
-      if (document.getElementById(`${question}`).value === "") {
-        const editedString =
-          question[0].toUpperCase() + question.substring(1);
-
-        alert(`${editedString} must be filled out.`);
+    for (const question in pageObj) {
+      if (pageObj[question] === "") {
+        alert("Please respond to all questions.");
         return false;
       }
     }
-
     return true;
   };
 
   _next = (e) => {
-    const aboutDataObj = {
-      title: "aboutData",
-      keys: [
-        "name",
-        "birthDate",
-        "grade",
-        "teacher",
-        "participation",
-        "school",
-        "schoolDistrict",
-      ],
-    };
-
-    const multipleChoiceDataObj = {
-      title: "multipleChoiceData",
-      keys: [
-        "q01_answer",
-        "q02_answer",
-        "q03_answer",
-        "q04_answer",
-        "q05_answer",
-        "q06_answer",
-        "q07_answer",
-        "q08_answer",
-        "q09_answer",
-        "q10_answer",
-      ],
-    };
-
-    const likertAboutMeObj = {
-      title: "personalFinanceData",
-      keys: ["q23_answer", "q24_answer", "q25_answer"],
-    };
-
-    const likertAboutMyFutureObj = {
-      title: "personalFinanceData",
-      keys: [
-        "q26_answer",
-        "q27_answer",
-        "q28_answer",
-        "q29_answer",
-        "q30_answer",
-        "q31_answer",
-        "q32_answer",
-      ],
-    };
-
-    const pageObjList = [
-      aboutDataObj,
-      multipleChoiceDataObj,
-      "fill-in-the-blank-page",
-      likertAboutMeObj,
-      likertAboutMyFutureObj,
+    const pages = [
+      this.state.aboutData,
+      this.state.multipleChoiceData,
+      "fill-in-the-blank",
+      this.state.personalFinanceData.aboutMe,
+      this.state.personalFinanceData.aboutMyFuture,
+      this.state.personalFinanceData.aboutMyFacilitators,
     ];
 
     let currentStep = this.state.currentStep;
@@ -348,7 +281,7 @@ class FormInputLayout extends Component {
       e.preventDefault();
     };
 
-    if (this.validatePage(pageObjList[currentStep - 1])) {
+    if (this.validatePage(pages[currentStep - 1])) {
       incrementStepAndUpdateState();
       return;
     }
