@@ -198,20 +198,103 @@ class FormInputLayout extends Component {
     // format free response data
     var depositFormData = this.state.freeResponseData.depositForm
       .rowEntries;
+
+    debugger;
+
+    let q11_response = `${depositFormData.dollarAmount_5}.${depositFormData.centAmount_5}`;
+    if (
+      !depositFormData.dollarAmount_5 &&
+      !depositFormData.centAmount_5
+    ) {
+      q11_response = "";
+    } else if (!depositFormData.dollarAmount_5) {
+      q11_response = `0.${depositFormData.centAmount_5}`;
+    } else if (!depositFormData.centAmount_5) {
+      q11_response = `${depositFormData.dollarAmount_5}.00`;
+    }
+
+    let q12_response = `${depositFormData.dollarAmount_6}.${depositFormData.centAmount_6}`;
+    if (
+      !depositFormData.dollarAmount_6 &&
+      !depositFormData.centAmount_6
+    ) {
+      q12_response = "";
+    } else if (!depositFormData.dollarAmount_6) {
+      q12_response = `0.${depositFormData.centAmount_6}`;
+    } else if (!depositFormData.centAmount_6) {
+      q12_response = `${depositFormData.dollarAmount_6}.00`;
+    }
+
+    let q13_response = `${depositFormData.dollarAmount_7}.${depositFormData.centAmount_7}`;
+    if (
+      !depositFormData.dollarAmount_7 &&
+      !depositFormData.centAmount_7
+    ) {
+      q13_response = "";
+    } else if (!depositFormData.dollarAmount_7) {
+      q13_response = `0.${depositFormData.centAmount_7}`;
+    } else if (!depositFormData.centAmount_7) {
+      q13_response = `${depositFormData.dollarAmount_7}.00`;
+    }
+
     var depositFormAnswerObj = {
-      q11_answer: `${depositFormData.dollarAmount_5}.${depositFormData.centAmount_5}`,
-      q12_answer: `${depositFormData.dollarAmount_6}.${depositFormData.centAmount_6}`,
-      q13_answer: `${depositFormData.dollarAmount_7}.${depositFormData.centAmount_7}`,
+      q11_answer: q11_response,
+      q12_answer: q12_response,
+      q13_answer: q13_response,
     };
 
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
+
+    let q17_response = `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`;
+
+    if (
+      !registerFormData.balanceDollarAmount_0 &&
+      !registerFormData.balanceCentAmount_0
+    ) {
+      q17_response = "";
+    } else if (!registerFormData.balanceDollarAmount_0) {
+      q17_response = `0.${registerFormData.balanceCentAmount_0}`;
+    } else if (!registerFormData.balanceCentAmount_0) {
+      q17_response = `${registerFormData.balanceDollarAmount_0}.00`;
+    }
+
+    let q20_response = `${registerFormData.paymentDollarAmount_2}.${registerFormData.paymentCentAmount_2}`;
+    if (
+      !registerFormData.paymentDollarAmount_2 &&
+      !registerFormData.paymentCentAmount_2
+    ) {
+      q20_response = "";
+    } else if (!registerFormData.paymentDollarAmount_2) {
+      q20_response = `0.${registerFormData.paymentCentAmount_2}`;
+    } else if (!registerFormData.paymentCentAmount_2) {
+      q20_response = `${registerFormData.paymentDollarAmount_2}.00`;
+    }
+
+    let q21_response = `${registerFormData.balanceDollarAmount_2}.${registerFormData.balanceCentAmount_2}`;
+    if (
+      !registerFormData.balanceDollarAmount_2 &&
+      !registerFormData.balanceCentAmount_2
+    ) {
+      q21_response = "";
+    } else if (!registerFormData.balanceDollarAmount_2) {
+      q21_response = `0.${registerFormData.balanceCentAmount_2}`;
+    } else if (!registerFormData.balanceCentAmount_2) {
+      q21_response = `${registerFormData.balanceDollarAmount_2}.00`;
+    }
+
+    const q18_response = registerFormData.entryNumber_2
+      ? registerFormData.entryNumber_2
+      : "";
+    const q19_response = registerFormData.transactionDesc_2
+      ? registerFormData.transactionDesc_2
+      : "";
     var registerFormAnswerObj = {
-      q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
-      q18_answer: registerFormData.entryNumber_2,
-      q19_answer: registerFormData.transactionDesc_2,
-      q20_answer: `${registerFormData.paymentDollarAmount_2}.${registerFormData.paymentCentAmount_2}`,
-      q21_answer: `${registerFormData.balanceDollarAmount_2}.${registerFormData.balanceCentAmount_2}`,
+      q17_answer: q17_response,
+      q18_answer: q18_response,
+      q19_answer: q19_response,
+      q20_answer: q20_response,
+      q21_answer: q21_response,
       q22_answer: "",
     };
 
@@ -242,6 +325,8 @@ class FormInputLayout extends Component {
       ...this.state.freeResponseData.checkSlip,
       ...personalFinanceAnswerObj,
     };
+
+    console.log(completedForm);
 
     DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
