@@ -38,6 +38,7 @@ const LikertAboutMyFuture = (props) => {
         <tbody>
           {prompts.map((prompt, idx) => (
             <LikertTableRow
+              coloredBackground={idx % 2}
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}

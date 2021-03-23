@@ -12,10 +12,29 @@ const LikertTableRow = (props) => {
     <tr>
       {props.aboutMe ? (
         <>
-          <th scope="row">{props.idx + 23}. </th>
-          <td>{props.prompt}</td>
+          <th
+            scope="row"
+            className={`${
+              props.coloredBackground ? "grey-background" : ""
+            }`}
+          >
+            {props.idx + 23}.{" "}
+          </th>
+          <td
+            className={`${
+              props.coloredBackground ? "grey-background" : ""
+            }`}
+          >
+            {props.prompt}
+          </td>
           {props.responses.map((response, idx) => (
-            <td key={response[idx]} style={{ textAlign: "center" }}>
+            <td
+              key={response[idx]}
+              className={`${
+                props.coloredBackground ? "grey-background" : ""
+              }`}
+              style={{ textAlign: "center" }}
+            >
               <Label check>
                 <Input
                   type="radio"
@@ -36,10 +55,29 @@ const LikertTableRow = (props) => {
       ) : null}
       {props.aboutMyFuture ? (
         <>
-          <th scope="row">{props.idx + 26}. </th>
-          <td>{props.prompt}</td>
+          <th
+            scope="row"
+            className={`${
+              props.coloredBackground ? "grey-background" : ""
+            }`}
+          >
+            {props.idx + 26}.{" "}
+          </th>
+          <td
+            className={`${
+              props.coloredBackground ? "grey-background" : ""
+            }`}
+          >
+            {props.prompt}
+          </td>
           {props.responses.map((response, idx) => (
-            <td key={response[idx]} style={{ textAlign: "center" }}>
+            <td
+              key={response[idx]}
+              className={`${
+                props.coloredBackground ? "grey-background" : ""
+              }`}
+              style={{ textAlign: "center" }}
+            >
               <Label check>
                 <Input
                   type="radio"
@@ -60,10 +98,29 @@ const LikertTableRow = (props) => {
       ) : null}
       {props.aboutMyFacilitators ? (
         <>
-          <th scope="row">{props.idx + 33}. </th>
-          <td>{props.prompt}</td>
+          <th
+            scope="row"
+            className={`${
+              props.coloredBackground ? "grey-background" : ""
+            }`}
+          >
+            {props.idx + 33}.{" "}
+          </th>
+          <td
+            className={`${
+              props.coloredBackground ? "grey-background" : ""
+            }`}
+          >
+            {props.prompt}
+          </td>
           {props.responses.map((response, idx) => (
-            <td key={response[idx]} style={{ textAlign: "center" }}>
+            <td
+              key={response[idx]}
+              className={`${
+                props.coloredBackground ? "grey-background" : ""
+              }`}
+              style={{ textAlign: "center" }}
+            >
               <Label check>
                 <Input
                   type="radio"
