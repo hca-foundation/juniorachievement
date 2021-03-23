@@ -196,99 +196,58 @@ class FormInputLayout extends Component {
     };
 
     // format free response data
+    const handleConcatenation = (dollarAmount, centAmount) => {
+      let response = `${dollarAmount}.${centAmount}`;
+      if (!dollarAmount && !centAmount) {
+        response = "";
+      } else if (!dollarAmount) {
+        response = `0.${centAmount}`;
+      } else if (!centAmount) {
+        response = `${dollarAmount}.00`;
+      }
+
+      return response;
+    };
+
     var depositFormData = this.state.freeResponseData.depositForm
       .rowEntries;
-
-    debugger;
-
-    let q11_response = `${depositFormData.dollarAmount_5}.${depositFormData.centAmount_5}`;
-    if (
-      !depositFormData.dollarAmount_5 &&
-      !depositFormData.centAmount_5
-    ) {
-      q11_response = "";
-    } else if (!depositFormData.dollarAmount_5) {
-      q11_response = `0.${depositFormData.centAmount_5}`;
-    } else if (!depositFormData.centAmount_5) {
-      q11_response = `${depositFormData.dollarAmount_5}.00`;
-    }
-
-    let q12_response = `${depositFormData.dollarAmount_6}.${depositFormData.centAmount_6}`;
-    if (
-      !depositFormData.dollarAmount_6 &&
-      !depositFormData.centAmount_6
-    ) {
-      q12_response = "";
-    } else if (!depositFormData.dollarAmount_6) {
-      q12_response = `0.${depositFormData.centAmount_6}`;
-    } else if (!depositFormData.centAmount_6) {
-      q12_response = `${depositFormData.dollarAmount_6}.00`;
-    }
-
-    let q13_response = `${depositFormData.dollarAmount_7}.${depositFormData.centAmount_7}`;
-    if (
-      !depositFormData.dollarAmount_7 &&
-      !depositFormData.centAmount_7
-    ) {
-      q13_response = "";
-    } else if (!depositFormData.dollarAmount_7) {
-      q13_response = `0.${depositFormData.centAmount_7}`;
-    } else if (!depositFormData.centAmount_7) {
-      q13_response = `${depositFormData.dollarAmount_7}.00`;
-    }
-
+    const q11_response = handleConcatenation(
+      depositFormData.dollarAmount_5,
+      depositFormData.centAmount_5
+    );
+    const q12_response = handleConcatenation(
+      depositFormData.dollarAmount_6,
+      depositFormData.centAmount_6
+    );
+    const q13_response = handleConcatenation(
+      depositFormData.dollarAmount_7,
+      depositFormData.centAmount_7
+    );
     var depositFormAnswerObj = {
       q11_answer: q11_response,
       q12_answer: q12_response,
       q13_answer: q13_response,
     };
-
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
-
-    let q17_response = `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`;
-
-    if (
-      !registerFormData.balanceDollarAmount_0 &&
-      !registerFormData.balanceCentAmount_0
-    ) {
-      q17_response = "";
-    } else if (!registerFormData.balanceDollarAmount_0) {
-      q17_response = `0.${registerFormData.balanceCentAmount_0}`;
-    } else if (!registerFormData.balanceCentAmount_0) {
-      q17_response = `${registerFormData.balanceDollarAmount_0}.00`;
-    }
-
-    let q20_response = `${registerFormData.paymentDollarAmount_2}.${registerFormData.paymentCentAmount_2}`;
-    if (
-      !registerFormData.paymentDollarAmount_2 &&
-      !registerFormData.paymentCentAmount_2
-    ) {
-      q20_response = "";
-    } else if (!registerFormData.paymentDollarAmount_2) {
-      q20_response = `0.${registerFormData.paymentCentAmount_2}`;
-    } else if (!registerFormData.paymentCentAmount_2) {
-      q20_response = `${registerFormData.paymentDollarAmount_2}.00`;
-    }
-
-    let q21_response = `${registerFormData.balanceDollarAmount_2}.${registerFormData.balanceCentAmount_2}`;
-    if (
-      !registerFormData.balanceDollarAmount_2 &&
-      !registerFormData.balanceCentAmount_2
-    ) {
-      q21_response = "";
-    } else if (!registerFormData.balanceDollarAmount_2) {
-      q21_response = `0.${registerFormData.balanceCentAmount_2}`;
-    } else if (!registerFormData.balanceCentAmount_2) {
-      q21_response = `${registerFormData.balanceDollarAmount_2}.00`;
-    }
-
+    const q17_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_0,
+      registerFormData.balanceCentAmount_0
+    );
     const q18_response = registerFormData.entryNumber_2
       ? registerFormData.entryNumber_2
       : "";
     const q19_response = registerFormData.transactionDesc_2
       ? registerFormData.transactionDesc_2
       : "";
+    const q20_response = handleConcatenation(
+      registerFormData.paymentDollarAmount_2,
+      registerFormData.paymentCentAmount_2
+    );
+    const q21_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_2,
+      registerFormData.balanceCentAmount_2
+    );
     var registerFormAnswerObj = {
       q17_answer: q17_response,
       q18_answer: q18_response,
