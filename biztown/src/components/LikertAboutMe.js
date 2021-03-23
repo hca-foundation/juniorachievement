@@ -20,9 +20,9 @@ const LikertAboutMe = (props) => {
           <tr>
             <th></th>
             <th>ABOUT ME...</th>
-            <th>Not Likely</th>
-            <th>Somewhat Likely</th>
-            <th>Very Likely</th>
+            <th className="likert-option">Not Likely</th>
+            <th className="likert-option">Somewhat Likely</th>
+            <th className="likert-option">Very Likely</th>
           </tr>
         </thead>
         <tbody>

@@ -25,10 +25,10 @@ const LikertAboutMyFacilitators = (props) => {
           <tr>
             <th></th>
             <th>ABOUT MY FACILITATORS...</th>
-            <th>Disagree</th>
-            <th>Slightly Disagree</th>
-            <th>Slightly Agree</th>
-            <th>Agree</th>
+            <th className="likert-option">Disagree</th>
+            <th className="likert-option">Slightly Disagree</th>
+            <th className="likert-option">Slightly Agree</th>
+            <th className="likert-option">Agree</th>
           </tr>
         </thead>
         <tbody>
