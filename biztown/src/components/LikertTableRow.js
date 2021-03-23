@@ -15,7 +15,7 @@ const LikertTableRow = (props) => {
           <th scope="row">{props.idx + 23}. </th>
           <td>{props.prompt}</td>
           {props.responses.map((response, idx) => (
-            <td key={response[idx]}>
+            <td key={response[idx]} style={{ textAlign: "center" }}>
               <Label check>
                 <Input
                   type="radio"
@@ -39,7 +39,7 @@ const LikertTableRow = (props) => {
           <th scope="row">{props.idx + 26}. </th>
           <td>{props.prompt}</td>
           {props.responses.map((response, idx) => (
-            <td key={response[idx]}>
+            <td key={response[idx]} style={{ textAlign: "center" }}>
               <Label check>
                 <Input
                   type="radio"
@@ -63,7 +63,7 @@ const LikertTableRow = (props) => {
           <th scope="row">{props.idx + 33}. </th>
           <td>{props.prompt}</td>
           {props.responses.map((response, idx) => (
-            <td key={response[idx]}>
+            <td key={response[idx]} style={{ textAlign: "center" }}>
               <Label check>
                 <Input
                   type="radio"
