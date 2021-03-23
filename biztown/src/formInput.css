@@ -55,6 +55,7 @@
 
 .navigation-btn:last-child {
   margin-left: 30px;
+  max-width: 110px;
 }
 
 .multiple-choice-answer-container {

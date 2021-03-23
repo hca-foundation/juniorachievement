@@ -59,6 +59,8 @@ table {
   /* Hides scrollbar, but keeps functionality */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  display: flex;
+  justify-content: center;
 }
 
 .slip-top {
@@ -74,4 +76,10 @@ table {
 /* Hide scrollbar for Chrome, Safari and Opera */
 .bank-slip-container::-webkit-scrollbar {
   display: none;
+}
+
+.deposit-form-parent {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }

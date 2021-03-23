@@ -41,8 +41,8 @@ class FreeResponseSection extends Component {
           handleChange={(e) => this.props.handleChange("checkSlip", e)}
         />
         <p>
-          17 - 22. Use the information from the check above. to complete
-          the two register entries. <b>(6 points)</b>
+          17 - 22. Use the information from the description above to
+          complete the two register entries. <b>(6 points)</b>
         </p>
         <RegisterSlip
           data={this.props.data.registerEntries}

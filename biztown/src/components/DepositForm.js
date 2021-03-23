@@ -8,7 +8,7 @@ class DepositForm extends Component {
   render() {
     return (
       <div
-        className="deposit-form flex-container"
+        className="deposit-form flex-container deposit-form-parent"
         style={{ overflowX: "scroll" }}
       >
         <div
