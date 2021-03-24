@@ -184,6 +184,13 @@ class FormInputLayout extends Component {
       ? (aboutSectionData["pretest"] = true)
       : (aboutSectionData["pretest"] = false);
 
+    let participation = "";
+    if (aboutSectionData.participation === "This is my first time") {
+      participation = "0";
+    } else {
+      participation = aboutSectionData.participation;
+    }
+
     // remove school district & otherGrade(if exists) from response and add pretest property
     var aboutSectionAnswerObj = {
       last_name: aboutSectionData.name,
@@ -191,7 +198,7 @@ class FormInputLayout extends Component {
       class_grade: aboutSectionData.grade,
       teacher: aboutSectionData.teacher,
       school: aboutSectionData.school,
-      previous_participation: aboutSectionData.participation,
+      previous_participation: participation,
       pretest: aboutSectionData.pretest,
     };
 
