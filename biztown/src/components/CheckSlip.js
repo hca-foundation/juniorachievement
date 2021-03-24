@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import bizTownBank from "../images/bizTownLogo.png";
 
 import "../App.css";
 import "../checkInput.css";
@@ -122,15 +121,17 @@ class CheckSlip extends Component {
             <span>Dollars</span>
           </div>
           <div>
-            <img
-              src={bizTownBank}
-              alt="BizTown Bank Logo"
+            <h2
               style={{
-                width: "300px",
-                marginBottom: "10px",
                 marginTop: "10px",
+                fontFamily: "Arial, Times, serif",
+                fontSize: "1.75em",
+                fontWeight: "lighter",
+                marginLeft: "20px",
               }}
-            />
+            >
+              JA BizTown<sup>&#x00AE;</sup> Bank
+            </h2>
           </div>
           <div className="flex-container">
             <div>Memo</div>
