@@ -65,13 +65,11 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.q31_answer = request.data['q31_answer']
         assessment.q32_answer = request.data['q32_answer']
 
-
         if assessment.pretest == False:
             assessment.q33_answer = request.data['q33_answer']
             assessment.q34_answer = request.data['q34_answer']
             assessment.q35_answer = request.data['q35_answer']
 
-        # FIGURE OUT HOW LENIENT GRADING SHOULD BE
         assessment.q01_score = 1 if assessment.q01_answer == 'b' else 0
         assessment.q02_score = 1 if assessment.q02_answer == 'b' else 0
         assessment.q03_score = 1 if assessment.q03_answer == 'a' else 0
@@ -85,21 +83,19 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.q11_score = 1 if assessment.q11_answer == '62.00' else 0
         assessment.q12_score = 1 if assessment.q12_answer == '20.00' else 0
         assessment.q13_score = 1 if assessment.q13_answer == '42.00' else 0
-        assessment.q14_score = 1 if assessment.q14_answer == 'Macy\'s' else 0
-        assessment.q15_score = 1 if assessment.q15_answer == 'Three and 75/100' else 0
-        assessment.q16_score = 1 if assessment.q16_answer == 'James Dunn' else 0
-        assessment.q17_score = 1 if assessment.q17_answer == '21.25' else 0
-        assessment.q18_score = 1 if assessment.q18_answer == '008' else 0
-        assessment.q19_score = 1 if assessment.q19_answer == 'Journeys' else 0
+        assessment.q14_score = 1 if assessment.q14_answer.lower() == 'macy\'s' else 0
+        assessment.q15_score = 1 if assessment.q15_answer.lower() == 'three and 75/100' else 0
+        assessment.q16_score = 1 if assessment.q16_answer.lower() == 'james dunn' else 0
+        assessment.q17_score = 1 if assessment.q17_answer == '3.75' else 0
+        assessment.q18_score = 1 if assessment.q18_answer == '21.25' else 0
+        assessment.q19_score = 1 if assessment.q19_answer.lower() == 'journeys' else 0
         assessment.q20_score = 1 if assessment.q20_answer == '5.00' else 0
-        assessment.q21_score = 1 if assessment.q21_answer == '16.25' else 0
-        assessment.q22_score = 1 if assessment.q22_answer == '' else 0
+        assessment.q21_score = 1 if assessment.q21_answer == '5.00' else 0
+        assessment.q22_score = 1 if assessment.q22_answer == '16.25' else 0
         assessment.save()
         
-
         serializer = AssessmentSerializer(assessment, context={'request': request})
         return Response(serializer.data)
-
 
     def list(self, request):
 

@@ -234,9 +234,10 @@ class FormInputLayout extends Component {
       registerFormData.balanceDollarAmount_0,
       registerFormData.balanceCentAmount_0
     );
-    const q18_response = registerFormData.entryNumber_2
-      ? registerFormData.entryNumber_2
-      : "";
+    const q18_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_1,
+      registerFormData.balanceCentAmount_1
+    );
     const q19_response = registerFormData.transactionDesc_2
       ? registerFormData.transactionDesc_2
       : "";
@@ -248,13 +249,18 @@ class FormInputLayout extends Component {
       registerFormData.balanceDollarAmount_2,
       registerFormData.balanceCentAmount_2
     );
+    const q22_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_3,
+      registerFormData.balanceCentAmount_3
+    );
+
     var registerFormAnswerObj = {
       q17_answer: q17_response,
       q18_answer: q18_response,
       q19_answer: q19_response,
       q20_answer: q20_response,
       q21_answer: q21_response,
-      q22_answer: "",
+      q22_answer: q22_response,
     };
 
     // construct personal finance data
