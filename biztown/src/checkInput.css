@@ -88,4 +88,6 @@ table {
   padding-left: 5px;
   padding-right: 5px;
   max-width: 95px;
+  border: 1px black solid;
+  background: rgb(212, 212, 212);
 }

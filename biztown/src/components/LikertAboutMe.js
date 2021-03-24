@@ -28,7 +28,7 @@ const LikertAboutMe = (props) => {
         <tbody>
           {prompts.map((prompt, idx) => (
             <LikertTableRow
-              greyBackground={idx % 2 ? null : "grey-background"}
+              greyBackground={idx % 2 ? "grey-background" : null}
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}

@@ -9,18 +9,27 @@ const LikertTableRow = (props) => {
   };
 
   return (
-    <tr>
+    <tr style={{ border: "1px black solid", padding: "3px" }}>
       {props.aboutMe ? (
         <>
-          <th scope="row" className={props.greyBackground}>
+          <th
+            scope="row"
+            className={props.greyBackground}
+            style={{ border: "1px black solid", padding: "5px" }}
+          >
             {props.idx + 23}.{" "}
           </th>
-          <td className={props.greyBackground}>{props.prompt}</td>
+          <td
+            className={props.greyBackground}
+            style={{ padding: "5px" }}
+          >
+            {props.prompt}
+          </td>
           {props.responses.map((response, idx) => (
             <td
               key={response[idx]}
               className={props.greyBackground}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", border: "1px black solid" }}
             >
               <Label check>
                 <Input
@@ -42,15 +51,24 @@ const LikertTableRow = (props) => {
       ) : null}
       {props.aboutMyFuture ? (
         <>
-          <th scope="row" className={props.greyBackground}>
+          <th
+            scope="row"
+            className={props.greyBackground}
+            style={{ border: "1px black solid", padding: "5px" }}
+          >
             {props.idx + 26}.{" "}
           </th>
-          <td className={props.greyBackground}>{props.prompt}</td>
+          <td
+            className={props.greyBackground}
+            style={{ padding: "5px" }}
+          >
+            {props.prompt}
+          </td>
           {props.responses.map((response, idx) => (
             <td
               key={response[idx]}
               className={props.greyBackground}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", border: "1px black solid" }}
             >
               <Label check>
                 <Input
@@ -72,15 +90,24 @@ const LikertTableRow = (props) => {
       ) : null}
       {props.aboutMyFacilitators ? (
         <>
-          <th scope="row" className={props.greyBackground}>
+          <th
+            scope="row"
+            className={props.greyBackground}
+            style={{ border: "1px black solid", padding: "5px" }}
+          >
             {props.idx + 33}.{" "}
           </th>
-          <td className={props.greyBackground}>{props.prompt}</td>
+          <td
+            className={props.greyBackground}
+            style={{ padding: "5px" }}
+          >
+            {props.prompt}
+          </td>
           {props.responses.map((response, idx) => (
             <td
               key={response[idx]}
               className={props.greyBackground}
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", border: "1px black solid" }}
             >
               <Label check>
                 <Input
