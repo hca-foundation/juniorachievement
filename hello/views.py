@@ -31,6 +31,9 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.birth_date = request.data['birth_date']
         assessment.school = school
         assessment.previous_participation = request.data['previous_participation']
+
+        test = assessment.last_name + assessment.birth_date + assessment.teacher + str(assessment.school.pk)
+        print(test)
         assessment.pretest = request.data['pretest']
         assessment.q01_answer = request.data['q01_answer']
         assessment.q02_answer = request.data['q02_answer']
