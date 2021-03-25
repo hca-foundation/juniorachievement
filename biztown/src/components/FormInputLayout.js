@@ -298,8 +298,6 @@ class FormInputLayout extends Component {
       ...personalFinanceAnswerObj,
     };
 
-    console.log(completedForm);
-
     DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
     });

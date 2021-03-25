@@ -8,12 +8,8 @@ from rest_framework.response import Response
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
-    # permission_classes = [permissions.IsAuthenticated]
 
 
 class AssessmentViewset(viewsets.ViewSet):
