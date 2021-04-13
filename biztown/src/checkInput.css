@@ -1,60 +1,93 @@
 .table-border {
-	border: 1px solid black;
+  border: 1px solid black;
 }
 .table-border-top {
-	border-top: 1px solid black;
+  border-top: 1px solid black;
 }
 .table-border-bottom {
-	border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 .table-border-right {
-	border-right: 1px solid black;
+  border-right: 1px solid black;
 }
 .table-border-left {
-	border-left: 1px solid black;
+  border-left: 1px solid black;
 }
 table {
   border-collapse: collapse;
-  width: 730px;
+  width: 100%;
 }
 
 .deposit-form-small-text {
-	font-size: 11px;
+  font-size: 11px;
 }
 
 .deposit-form {
-	font-size: 15px;
-	font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  font-family: "Times New Roman", Times, serif;
+  /* Hides scrollbar, but keeps functionality */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  padding: 2px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.deposit-form::-webkit-scrollbar {
+  display: none;
 }
 
 .dollar-amount {
-	text-align: right;
-	width: 100px;
+  text-align: right;
+  width: 100px;
 }
 
 .no-border {
-	border: none;
+  border: none;
 }
 
 .narrow-column {
-	width: 25px;
+  width: 25px;
 }
 
 .medium-column {
-	width: 100px;
+  width: 100px;
 }
 
 .bank-slip-container {
-	overflow-x: scroll;
-	margin-bottom: 60px;
+  overflow-x: scroll;
+  margin-bottom: 20px;
+  /* Hides scrollbar, but keeps functionality */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  display: flex;
+  justify-content: center;
 }
 
 .slip-top {
-	padding-top: 50px;
-	margin-bottom: 60px;
-	overflow-x: scroll;
+  padding-top: 50px;
+  margin-bottom: 60px;
+  overflow-x: scroll;
 }
 
 .grey-background {
-	background: #D4D4D4;
+  background: rgb(212, 212, 212);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.bank-slip-container::-webkit-scrollbar {
+  display: none;
+}
+
+.deposit-form-parent {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.likert-option {
+  padding-left: 5px;
+  padding-right: 5px;
+  max-width: 95px;
+  border: 1px black solid;
+  background: rgb(212, 212, 212);
 }

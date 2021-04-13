@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import bizTownBank from "../images/bizTownLogo.png";
 
 import "../App.css";
 import "../checkInput.css";
@@ -8,7 +7,7 @@ class DepositForm extends Component {
   render() {
     return (
       <div
-        className="deposit-form flex-container"
+        className="deposit-form flex-container deposit-form-parent"
         style={{ overflowX: "scroll" }}
       >
         <div
@@ -46,11 +45,17 @@ class DepositForm extends Component {
                   Mark Hill
                 </span>
               </div>
-              <img
-                src={bizTownBank}
-                alt="BizTown Bank Logo"
-                style={{ width: "300px", marginTop: "15px" }}
-              />
+              <h1
+                style={{
+                  marginRight: "20px",
+                  textAlign: "center",
+                  fontFamily: "Arial, Times, serif",
+                  fontSize: "1.75em",
+                  fontWeight: "lighter",
+                }}
+              >
+                JA BizTown<sup>&#x00AE;</sup> Bank
+              </h1>
               <div
                 className="flex-container"
                 style={{ marginTop: "30px" }}

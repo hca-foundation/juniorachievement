@@ -29,15 +29,16 @@ const LikertAboutMyFuture = (props) => {
           <tr>
             <th></th>
             <th>ABOUT MY FUTURE...</th>
-            <th>Disagree</th>
-            <th>Slightly Disagree</th>
-            <th>Slightly Agree</th>
-            <th>Agree</th>
+            <th className="likert-option">Disagree</th>
+            <th className="likert-option">Slightly Disagree</th>
+            <th className="likert-option">Slightly Agree</th>
+            <th className="likert-option">Agree</th>
           </tr>
         </thead>
         <tbody>
           {prompts.map((prompt, idx) => (
             <LikertTableRow
+              greyBackground={idx % 2 ? "grey-background" : null}
               key={prompt}
               data={props.data}
               handleChange={props.handleChange}

@@ -14,9 +14,28 @@ class FormInputLayout extends Component {
     super(props);
     this.state = {
       currentStep: 1,
-      aboutData: {},
+      aboutData: {
+        name: "",
+        birthDate: "",
+        grade: "",
+        teacher: "",
+        participation: "",
+        school: "",
+        schoolDistrict: "",
+      },
       schoolData: {},
-      multipleChoiceData: {},
+      multipleChoiceData: {
+        q01_answer: "",
+        q02_answer: "",
+        q03_answer: "",
+        q04_answer: "",
+        q05_answer: "",
+        q06_answer: "",
+        q07_answer: "",
+        q08_answer: "",
+        q09_answer: "",
+        q10_answer: "",
+      },
       freeResponseData: {
         depositForm: {
           prepopulatedRows: {
@@ -27,9 +46,17 @@ class FormInputLayout extends Component {
             rowSubtitle_6: "LESS CASH RECEIVED",
             rowSubtitle_7: "NET DEPOSIT",
           },
-          rowEntries: {},
+          rowEntries: {
+            q11_answer: "",
+            q12_answer: "",
+            q13_answer: "",
+          },
         },
-        checkSlip: {},
+        checkSlip: {
+          q14_answer: "",
+          q15_answer: "",
+          q16_answer: "",
+        },
         registerEntries: {
           prepopulatedRows: {
             entryNumber_0: "007",
@@ -39,20 +66,47 @@ class FormInputLayout extends Component {
             paymentCentAmount_0: "75",
             date_2: "3/14",
           },
-          rowEntries: {},
+          rowEntries: {
+            q17_answer: "",
+            q18_answer: "",
+            q19_answer: "",
+            q20_answer: "",
+            q21_answer: "",
+            q22_answer: "",
+          },
         },
       },
-      personalFinanceData: {},
+      personalFinanceData: {
+        aboutMe: {
+          q23_answer: "",
+          q24_answer: "",
+          q25_answer: "",
+        },
+        aboutMyFuture: {
+          q26_answer: "",
+          q27_answer: "",
+          q28_answer: "",
+          q29_answer: "",
+          q30_answer: "",
+          q31_answer: "",
+          q32_answer: "",
+        },
+        aboutMyFacilitators: {
+          q33_answer: "",
+          q34_answer: "",
+          q35_answer: "",
+        },
+      },
     };
   }
 
-  handlePersonalFinanceSectionChange = (event) => {
+  handlePersonalFinanceSectionChange = (section, event) => {
     const { name, value } = event.target;
     this.setState((prevState) => {
       var personalFinanceData = JSON.parse(
         JSON.stringify(prevState.personalFinanceData)
       );
-      personalFinanceData[name] = value;
+      personalFinanceData[section][name] = value;
       return { personalFinanceData };
     });
   };
@@ -119,34 +173,119 @@ class FormInputLayout extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     // about section
-    var aboutSectionAnswerObj = { ...this.state.aboutData };
-    // if other grade is included, submit other value as grade in form
-    if (aboutSectionAnswerObj.otherGrade) {
-      aboutSectionAnswerObj.grade = aboutSectionAnswerObj.otherGrade;
-      aboutSectionAnswerObj.otherGrade = null;
-    }
-    // remove school district from response
-    aboutSectionAnswerObj.schoolDistrict = null;
+    var aboutSectionData = { ...this.state.aboutData };
 
-    // format free response data
-    var depositFormData = this.state.freeResponseData.depositForm
-      .rowEntries;
-    var depositFormAnswerObj = {
-      q11_answer: `${depositFormData.dollarAmount_5}.${depositFormData.centAmount_5}`,
-      q12_answer: `${depositFormData.dollarAmount_6}.${depositFormData.centAmount_6}`,
-      q13_answer: `${depositFormData.dollarAmount_7}.${depositFormData.centAmount_7}`,
+    // if other grade is included, submit other value as grade in form
+    if (aboutSectionData.otherGrade) {
+      aboutSectionData.grade = aboutSectionData.otherGrade;
+    }
+
+    this.props.preTest
+      ? (aboutSectionData["pretest"] = true)
+      : (aboutSectionData["pretest"] = false);
+
+    let participation = "";
+    if (aboutSectionData.participation === "This is my first time") {
+      participation = "0";
+    } else {
+      participation = aboutSectionData.participation;
+    }
+
+    // remove school district & otherGrade(if exists) from response and add pretest property
+    var aboutSectionAnswerObj = {
+      last_name: aboutSectionData.name,
+      birth_date: aboutSectionData.birthDate,
+      class_grade: aboutSectionData.grade,
+      teacher: aboutSectionData.teacher,
+      school: aboutSectionData.school,
+      previous_participation: participation,
+      pretest: aboutSectionData.pretest,
     };
 
+    // format free response data
+    const handleConcatenation = (dollarAmount, centAmount) => {
+      let response = `${dollarAmount}.${centAmount}`;
+      if (!dollarAmount && !centAmount) {
+        response = "";
+      } else if (!dollarAmount) {
+        response = `0.${centAmount}`;
+      } else if (!centAmount) {
+        response = `${dollarAmount}.00`;
+      }
+
+      return response;
+    };
+
+    var depositFormData = this.state.freeResponseData.depositForm
+      .rowEntries;
+    const q11_response = handleConcatenation(
+      depositFormData.dollarAmount_5,
+      depositFormData.centAmount_5
+    );
+    const q12_response = handleConcatenation(
+      depositFormData.dollarAmount_6,
+      depositFormData.centAmount_6
+    );
+    const q13_response = handleConcatenation(
+      depositFormData.dollarAmount_7,
+      depositFormData.centAmount_7
+    );
+    var depositFormAnswerObj = {
+      q11_answer: q11_response,
+      q12_answer: q12_response,
+      q13_answer: q13_response,
+    };
     var registerFormData = this.state.freeResponseData.registerEntries
       .rowEntries;
+    const q17_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_0,
+      registerFormData.balanceCentAmount_0
+    );
+    const q18_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_1,
+      registerFormData.balanceCentAmount_1
+    );
+    const q19_response = registerFormData.transactionDesc_2
+      ? registerFormData.transactionDesc_2
+      : "";
+    const q20_response = handleConcatenation(
+      registerFormData.paymentDollarAmount_2,
+      registerFormData.paymentCentAmount_2
+    );
+    const q21_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_2,
+      registerFormData.balanceCentAmount_2
+    );
+    const q22_response = handleConcatenation(
+      registerFormData.balanceDollarAmount_3,
+      registerFormData.balanceCentAmount_3
+    );
 
     var registerFormAnswerObj = {
-      q17_answer: `${registerFormData.balanceDollarAmount_0}.${registerFormData.balanceCentAmount_0}`,
-      q18_answer: `${registerFormData.balanceDollarAmount_1}.${registerFormData.balanceCentAmount_1}`,
-      q19_answer: registerFormData.transactionDesc_2,
-      q20_answer: `${registerFormData.paymentDollarAmount_2}.${registerFormData.paymentCentAmount_2}`,
-      q21_answer: `${registerFormData.balanceDollarAmount_2}.${registerFormData.balanceCentAmount_2}`,
-      q22_answer: `${registerFormData.balanceDollarAmount_3}.${registerFormData.balanceCentAmount_3}`,
+      q17_answer: q17_response,
+      q18_answer: q18_response,
+      q19_answer: q19_response,
+      q20_answer: q20_response,
+      q21_answer: q21_response,
+      q22_answer: q22_response,
+    };
+
+    // construct personal finance data
+    var personalFinanceData = this.state.personalFinanceData;
+    var personalFinanceAnswerObj = {
+      q23_answer: personalFinanceData.aboutMe.q23_answer,
+      q24_answer: personalFinanceData.aboutMe.q24_answer,
+      q25_answer: personalFinanceData.aboutMe.q25_answer,
+      q26_answer: personalFinanceData.aboutMyFuture.q26_answer,
+      q27_answer: personalFinanceData.aboutMyFuture.q27_answer,
+      q28_answer: personalFinanceData.aboutMyFuture.q28_answer,
+      q29_answer: personalFinanceData.aboutMyFuture.q29_answer,
+      q30_answer: personalFinanceData.aboutMyFuture.q30_answer,
+      q31_answer: personalFinanceData.aboutMyFuture.q31_answer,
+      q32_answer: personalFinanceData.aboutMyFuture.q32_answer,
+      q33_answer: personalFinanceData.aboutMyFacilitators.q33_answer,
+      q34_answer: personalFinanceData.aboutMyFacilitators.q34_answer,
+      q35_answer: personalFinanceData.aboutMyFacilitators.q35_answer,
     };
 
     // construct completed form from different objects
@@ -156,100 +295,37 @@ class FormInputLayout extends Component {
       ...aboutSectionAnswerObj,
       ...this.state.multipleChoiceData,
       ...this.state.freeResponseData.checkSlip,
-      ...this.state.personalFinanceData,
+      ...personalFinanceAnswerObj,
     };
 
-    var submitPath = this.props.postTest
-      ? "postassessment/"
-      : "preassessment/";
-    DataManager.post(submitPath, completedForm).then(() => {
+    DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/completionpage");
     });
   };
 
   validatePage = (pageObj) => {
+    // this section's questions aren't required
     if (pageObj === "fill-in-the-blank-page") {
       return true;
     }
 
-    for (let question of pageObj.keys) {
-      const element = document.getElementById(`${question}`);
-
-      if (document.getElementById(`${question}`).type === "radio") {
-        const section = this.state[`${pageObj.title}`];
-
-        if (!(element.name in section)) {
-          alert(`Please choose an option for ${question}.`);
-          return false;
-        }
-      }
-
-      if (document.getElementById(`${question}`).value === "") {
-        const editedString =
-          question[0].toUpperCase() + question.substring(1);
-
-        alert(`${editedString} must be filled out.`);
+    for (const question in pageObj) {
+      if (pageObj[question] === "") {
+        alert("Please respond to all questions.");
         return false;
       }
     }
-
     return true;
   };
 
   _next = (e) => {
-    const aboutDataObj = {
-      title: "aboutData",
-      keys: [
-        "name",
-        "birthDate",
-        "grade",
-        "teacher",
-        "participation",
-        "school",
-        "schoolDistrict",
-      ],
-    };
-
-    const multipleChoiceDataObj = {
-      title: "multipleChoiceData",
-      keys: [
-        "q01_answer",
-        "q02_answer",
-        "q03_answer",
-        "q04_answer",
-        "q05_answer",
-        "q06_answer",
-        "q07_answer",
-        "q08_answer",
-        "q09_answer",
-        "q10_answer",
-      ],
-    };
-
-    const likertAboutMeObj = {
-      title: "personalFinanceData",
-      keys: ["q23_answer", "q24_answer", "q25_answer"],
-    };
-
-    const likertAboutMyFutureObj = {
-      title: "personalFinanceData",
-      keys: [
-        "q26_answer",
-        "q27_answer",
-        "q28_answer",
-        "q29_answer",
-        "q30_answer",
-        "q31_answer",
-        "q32_answer",
-      ],
-    };
-
-    const pageObjList = [
-      aboutDataObj,
-      multipleChoiceDataObj,
-      "fill-in-the-blank-page",
-      likertAboutMeObj,
-      likertAboutMyFutureObj,
+    const pages = [
+      this.state.aboutData,
+      this.state.multipleChoiceData,
+      "fill-in-the-blank",
+      this.state.personalFinanceData.aboutMe,
+      this.state.personalFinanceData.aboutMyFuture,
+      this.state.personalFinanceData.aboutMyFacilitators,
     ];
 
     let currentStep = this.state.currentStep;
@@ -260,7 +336,7 @@ class FormInputLayout extends Component {
       e.preventDefault();
     };
 
-    if (this.validatePage(pageObjList[currentStep - 1])) {
+    if (this.validatePage(pages[currentStep - 1])) {
       incrementStepAndUpdateState();
       return;
     }
@@ -314,7 +390,6 @@ class FormInputLayout extends Component {
 
   submitButton() {
     let currentStep = this.state.currentStep;
-
     if (
       (currentStep === 5 && this.props.preTest) ||
       currentStep === 6
@@ -381,21 +456,35 @@ class FormInputLayout extends Component {
             )}
             {currentStep === 4 && (
               <LikertAboutMe
-                handleChange={this.handlePersonalFinanceSectionChange}
-                data={this.state.personalFinanceData}
+                handleChange={(e) =>
+                  this.handlePersonalFinanceSectionChange("aboutMe", e)
+                }
+                data={this.state.personalFinanceData.aboutMe}
               />
             )}
             {currentStep === 5 && (
               <LikertAboutMyFuture
-                handleChange={this.handlePersonalFinanceSectionChange}
-                data={this.state.personalFinanceData}
+                handleChange={(e) =>
+                  this.handlePersonalFinanceSectionChange(
+                    "aboutMyFuture",
+                    e
+                  )
+                }
+                data={this.state.personalFinanceData.aboutMyFuture}
               />
             )}
 
             {this.props.postTest && currentStep === 6 && (
               <LikertAboutMyFacilitators
-                handleChange={this.handlePersonalFinanceSectionChange}
-                data={this.state.personalFinanceData}
+                handleChange={(e) =>
+                  this.handlePersonalFinanceSectionChange(
+                    "aboutMyFacilitators",
+                    e
+                  )
+                }
+                data={
+                  this.state.personalFinanceData.aboutMyFacilitators
+                }
               />
             )}
             <div className="page-nav-buttons">

@@ -13,10 +13,6 @@ const participationOptions = [
 const gradeOptions = ["4th", "5th", "6th", "7th", "Other"];
 
 class AboutSection extends Component {
-  /*
-        TODO:
-        * update to use react-dates. date input not supported in safari.
-  */
   render() {
     if (!Object.keys(this.props.schoolData).length) {
       DataManager.getAll("schools").then((data) => {
