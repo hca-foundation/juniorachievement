@@ -1,7 +1,7 @@
 // TODO: Set up dev and production URLs
 
 // NOTE: ensure remoteURL is consistent with local back end url
-const remoteURL = "https://biztown-server.azurewebsites.net/"; // || "http://localhost:8000"
+const remoteURL = "40.70.147.13"; // || "https://biztown-server.azurewebsites.net/"
 
 const DataManager = {
   post(tab, obj) {
