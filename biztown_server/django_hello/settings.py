@@ -67,10 +67,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
     'http://127.0.0.1:3000',
     'https://ja-web.azurewebsites.net',
-    'https://20.40.202.15'
 )
 
 ROOT_URLCONF = 'django_hello.urls'
