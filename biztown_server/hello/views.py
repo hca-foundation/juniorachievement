@@ -83,7 +83,7 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.q11_score = 1 if assessment.q11_answer == '62.00' else 0
         assessment.q12_score = 1 if assessment.q12_answer == '20.00' else 0
         assessment.q13_score = 1 if assessment.q13_answer == '42.00' else 0
-        assessment.q14_score = 1 if assessment.q14_answer.lower() == 'macy\'s' else 0
+        assessment.q14_score = 1 if assessment.q14_answer.lower() == 'macy\'s' or assessment.q14_answer.lower() == 'macys' else 0
         assessment.q15_score = 1 if assessment.q15_answer.lower() == 'three and 75/100' else 0
         assessment.q16_score = 1 if assessment.q16_answer.lower() == 'james dunn' else 0
         assessment.q17_score = 1 if assessment.q17_answer == '3.75' else 0
