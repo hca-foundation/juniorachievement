@@ -54,16 +54,16 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.q20_answer = request.data['q20_answer']
         assessment.q21_answer = request.data['q21_answer']
         assessment.q22_answer = request.data['q22_answer']
-        assessment.q23_answer = int(request.data['q23_answer'])
-        assessment.q24_answer = int(request.data['q24_answer'])
-        assessment.q25_answer = int(request.data['q25_answer'])
-        assessment.q26_answer = int(request.data['q26_answer'])
-        assessment.q27_answer = int(request.data['q27_answer'])
-        assessment.q28_answer = int(request.data['q28_answer'])
-        assessment.q29_answer = int(request.data['q29_answer'])
-        assessment.q30_answer = int(request.data['q30_answer'])
-        assessment.q31_answer = int(request.data['q31_answer'])
-        assessment.q32_answer = int(request.data['q32_answer'])
+        assessment.q23_answer = request.data['q23_answer'].int()
+        assessment.q24_answer = request.data['q24_answer'].int()
+        assessment.q25_answer = request.data['q25_answer'].int()
+        assessment.q26_answer = request.data['q26_answer'].int()
+        assessment.q27_answer = request.data['q27_answer'].int()
+        assessment.q28_answer = request.data['q28_answer'].int()
+        assessment.q29_answer = request.data['q29_answer'].int()
+        assessment.q30_answer = request.data['q30_answer'].int()
+        assessment.q31_answer = request.data['q31_answer'].int()
+        assessment.q32_answer = request.data['q32_answer'].int()
 
         if assessment.pretest == False:
             assessment.q33_answer = int(request.data['q33_answer'])
