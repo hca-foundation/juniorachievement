@@ -299,7 +299,7 @@ class FormInputLayout extends Component {
     };
 
     DataManager.post("assessments/", completedForm).then(() => {
-      this.props.history.push("/completionpage");
+      this.props.history.push("/");
     });
   };
 
