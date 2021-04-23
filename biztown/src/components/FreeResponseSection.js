@@ -28,7 +28,7 @@ class FreeResponseSection extends Component {
         />
         <p>
           14 - 16. Read the following information and complete the
-          deposit ticket. <b>(3 points)</b>
+          check. <b>(3 points)</b>
         </p>
         <p>
           On March 14, James Dunn went shopping at the mall with his
