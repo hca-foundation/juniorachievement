@@ -159,7 +159,7 @@ class FormInputLayout extends Component {
   setSchoolData = (schoolData) => {
     this.setState({ schoolData });
     // initialise to first school district
-    this.setInitialSchoolInfo(Object.keys(schoolData)[0]);
+    this.setInitialSchoolInfo(Object.keys(schoolData).sort()[0]);
   };
 
   setInitialSchoolInfo = (schoolDistrict) => {

@@ -212,7 +212,7 @@ function ParticipationComponent(props) {
 }
 
 function SchoolDisctictComponent(props) {
-  var schoolDistricts = Object.keys(props.schoolData);
+  var schoolDistricts = Object.keys(props.schoolData).sort();
   var schoolDistrictOptions =
     schoolDistricts &&
     schoolDistricts.map((schoolDistrict) => {
