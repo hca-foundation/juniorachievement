@@ -26,4 +26,4 @@ class AssessmentSerializer(serializers.HyperlinkedModelSerializer):
                 'q21_score', 'q22_answer', 'q22_score', 'q23_answer', 'q24_answer',
                 'q25_answer', 'q26_answer', 'q27_answer', 'q28_answer', 'q29_answer',
                 'q30_answer', 'q31_answer', 'q32_answer', 'q33_answer', 'q34_answer',
-                'q35_answer']
+                'q35_answer', 'date']
