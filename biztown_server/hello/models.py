@@ -14,7 +14,7 @@ class Assessment(models.Model):
     previous_participation = models.CharField(max_length=50)
     student_id = models.CharField(max_length=100)
     pretest = models.BooleanField()
-    date = models.DateField(auto_now=True, auto_now_add=False)
+    date = models.DateField(auto_now=False, auto_now_add=False)
     q01_answer = models.CharField(max_length=200)
     q01_score = models.IntegerField()
     q02_answer = models.CharField(max_length=200)

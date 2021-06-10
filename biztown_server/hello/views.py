@@ -4,6 +4,7 @@ from rest_framework import permissions
 from .serializers import *
 from .models import *
 from rest_framework.response import Response
+from datetime import date
 
 
 
@@ -32,6 +33,7 @@ class AssessmentViewset(viewsets.ViewSet):
         assessment.student_id = student_id
         
         assessment.pretest = request.data['pretest']
+        assessment.date = date.today()
         assessment.q01_answer = request.data['q01_answer']
         assessment.q02_answer = request.data['q02_answer']
         assessment.q03_answer = request.data['q03_answer']
