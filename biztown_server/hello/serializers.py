@@ -14,7 +14,7 @@ class AssessmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Assessment
         fields = ['last_name', 'birth_date', 'class_grade', 'teacher', 'school',
-                'previous_participation', 'student_id', 'pretest', 'q01_answer',
+                'previous_participation', 'student_id', 'date', 'pretest', 'q01_answer',
                 'q01_score', 'q02_answer', 'q02_score', 'q03_answer', 'q03_score',
                 'q04_answer', 'q04_score', 'q05_answer', 'q05_score', 'q06_answer',
                 'q06_score', 'q07_answer', 'q07_score', 'q08_answer', 'q08_score',
@@ -26,4 +26,4 @@ class AssessmentSerializer(serializers.HyperlinkedModelSerializer):
                 'q21_score', 'q22_answer', 'q22_score', 'q23_answer', 'q24_answer',
                 'q25_answer', 'q26_answer', 'q27_answer', 'q28_answer', 'q29_answer',
                 'q30_answer', 'q31_answer', 'q32_answer', 'q33_answer', 'q34_answer',
-                'q35_answer', 'date']
+                'q35_answer']
