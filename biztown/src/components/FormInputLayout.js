@@ -202,6 +202,7 @@ class FormInputLayout extends Component {
       pretest: aboutSectionData.pretest,
     };
 
+    // TODO: IF !CENTAMOUNT, DONT CONCAT .00
     // format free response data
     const handleConcatenation = (dollarAmount, centAmount) => {
       let response = `${dollarAmount}.${centAmount}`;
@@ -216,8 +217,8 @@ class FormInputLayout extends Component {
       return response;
     };
 
-    var depositFormData = this.state.freeResponseData.depositForm
-      .rowEntries;
+    var depositFormData =
+      this.state.freeResponseData.depositForm.rowEntries;
     const q11_response = handleConcatenation(
       depositFormData.dollarAmount_5,
       depositFormData.centAmount_5
@@ -235,8 +236,8 @@ class FormInputLayout extends Component {
       q12_answer: q12_response,
       q13_answer: q13_response,
     };
-    var registerFormData = this.state.freeResponseData.registerEntries
-      .rowEntries;
+    var registerFormData =
+      this.state.freeResponseData.registerEntries.rowEntries;
     const q17_response = handleConcatenation(
       registerFormData.balanceDollarAmount_0,
       registerFormData.balanceCentAmount_0
@@ -298,6 +299,7 @@ class FormInputLayout extends Component {
       ...personalFinanceAnswerObj,
     };
 
+    // TODO: CHANGE TO COMPLETION PAGE FOR PRODUCTION
     DataManager.post("assessments/", completedForm).then(() => {
       this.props.history.push("/");
     });
