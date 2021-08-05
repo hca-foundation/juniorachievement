@@ -301,7 +301,7 @@ class FormInputLayout extends Component {
 
     // TODO: CHANGE TO COMPLETION PAGE FOR PRODUCTION
     DataManager.post("assessments/", completedForm).then(() => {
-      this.props.history.push("/");
+      this.props.history.push("/completionpage");
     });
   };
 

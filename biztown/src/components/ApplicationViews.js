@@ -1,12 +1,16 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { FormInputLayout } from "./FormInputLayout.js";
-import { TestRoutePage } from "./TestRoutePage.js";
+import { CompletionPage } from "./CompletionPage.js";
 
 const ApplicationViews = () => {
   return (
     <>
-      <Route exact path="/" render={() => <TestRoutePage />} />
+      <Route
+        exact
+        path="/completionpage"
+        render={() => <CompletionPage />}
+      />
       <Route
         exact
         path="/pretest"
@@ -20,11 +24,6 @@ const ApplicationViews = () => {
         render={(props) => (
           <FormInputLayout postTest={true} {...props} />
         )}
-      />
-      <Route
-        exact
-        path="/completionpage"
-        render={() => <div>Complete!!</div>}
       />
     </>
   );
