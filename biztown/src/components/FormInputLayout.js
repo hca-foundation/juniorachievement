@@ -209,9 +209,9 @@ class FormInputLayout extends Component {
       if (!dollarAmount && !centAmount) {
         response = "";
       } else if (!dollarAmount) {
-        response = `0.${centAmount}`;
+        response = `.${centAmount}`;
       } else if (!centAmount) {
-        response = `${dollarAmount}.00`;
+        response = `${dollarAmount}.`;
       }
 
       return response;
