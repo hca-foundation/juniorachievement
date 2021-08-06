@@ -55,4 +55,5 @@
 26. Build and tag new Docker image: `docker build . -t ja-web-test:v2`
 27. Tag local Docker image for registry: `docker tag ja-web-test:v2 jaContainerRegistry.azurecr.io/ja-web-test:latest`
 28. Push image to registry: `docker push jaContainerRegistry.azurecr.io/ja-web-test:latest`
+29. Restart web app: find the app service in azure portal and restart it <span style="font-weight: lighter">//Takes about thirty seconds to a minute to take effect</span>
 <!-- To get Tenant-ID, run: `az account show` <span style="font-weight: lighter">// Copy returned 'homeTenantId' prop</span> -->
