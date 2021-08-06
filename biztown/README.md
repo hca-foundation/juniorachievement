@@ -45,7 +45,7 @@
 
 ### Deploy and test
 
-22. Specify container registry and image to deploy for web app: `az webapp config container set --name ja-web-test --resource-group jaResourceGroup --docker-custom-image-name jaContainerRegistry.azurecr.io/ja-web-test:v1 --docker-registry-server-url https://jaContainerRegistry.azurecr.io` <span style="font-weight: lighter">// Web app should be running in container upon completion</span>
+22. Specify container registry and image to deploy for web app: `az webapp config container set --name ja-web-test --resource-group jaResourceGroup --docker-custom-image-name jaContainerRegistry.azurecr.io/ja-web-test:latest --docker-registry-server-url https://jaContainerRegistry.azurecr.io` <span style="font-weight: lighter">// Web app should be running in container upon completion</span>
 23. Test at [http://ja-web-test.azurewebsites.net](http://ja-web-test.azurewebsites.net) <span style="font-weight: lighter">//May take some time for the app to respond on first access; refresh if page browser times out</span>
 
 ### Update and redeploy
