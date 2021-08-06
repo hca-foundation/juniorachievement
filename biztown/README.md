@@ -42,6 +42,7 @@
 19. Get service principal of the assigned identity: `az webapp identity assign --resource-group jaResourceGroup --name ja-web-test --query principalId - -output tsv`
 20. Retrieve subscription ID: `az account show --query id --output tsv`
 21. Grant the web app permission to access the container registry: `az role assignment create --assignee <principal-id> --scope /subscriptions/<subscription-id>/resourceGroups/jaResourceGroup/providers/Microsoft.ContainerRegistry/registries/jaContainerRegistry --role "AcrPull"` <span style="font-weight: lighter">//Replace \<subscription-id\> and \<principal-id\> with outputs from \#19 and \#20</span>
+22. Configure your app to use the managed identity to pull from Azure Container Registry: `az resource update --ids /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Web/sites/<app-name>/config/web --set properties.acrUseManagedIdentityCreds=True` <span style="font-weight: lighter">//Replace \<subscription-id\> and with output from \#19 and replace /<resource-group> & /<app-name> accordingly.</span>
 
 ### Deploy and test
 
