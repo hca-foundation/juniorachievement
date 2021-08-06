@@ -26,12 +26,12 @@
 9. Set admin-enabled to true: `az acr update -n jaContainerRegistry --resource-group jaResourceGroup --admin-enabled true`
 10. Retrieve passwords: `az acr credential show --resource-group jaResourceGroup --name jaContainerRegistry` <span style="font-weight: lighter">// Returns two passwords and a username</span>
 11. Sign in to container registry: `docker login jaContainerRegistry.azurecr.io --username jaContainerRegistry` <span style="font-weight: lighter">// Returns password prompt</span>
-12. Enter one of the passwords from \#11 <span style="font-weight: lighter">// Returns `Login Successful`</span>
+12. Enter one of the passwords from \#10 <span style="font-weight: lighter">// Returns `Login Successful`</span>
 
 ### Prep local Docker image for Azure
 
-13. Tag local Docker image for registry: `docker tag ja-web-test:v1 jaContainerRegistry.azurecr.io/ja-web-test:v1`/
-14. Push image to registry: `docker push jaContainerRegistry.azurecr.io/ja-web-test:v1`
+13. Tag local Docker image for registry: `docker tag ja-web-test:v1 jaContainerRegistry.azurecr.io/ja-web-test:latest`/
+14. Push image to registry: `docker push jaContainerRegistry.azurecr.io/ja-web-test:latest`
 15. Verify push was successful: `az acr repository list -n jaContainerRegistry` <span style="font-weight: lighter">// Returns name of image</span>
 
 ### Create and configure App Service Plan and web app
@@ -48,4 +48,10 @@
 22. Specify container registry and image to deploy for web app: `az webapp config container set --name ja-web-test --resource-group jaResourceGroup --docker-custom-image-name jaContainerRegistry.azurecr.io/ja-web-test:v1 --docker-registry-server-url https://jaContainerRegistry.azurecr.io` <span style="font-weight: lighter">// Web app should be running in container upon completion</span>
 23. Test at [http://ja-web-test.azurewebsites.net](http://ja-web-test.azurewebsites.net) <span style="font-weight: lighter">//May take some time for the app to respond on first access; refresh if page browser times out</span>
 
+### Update and redeploy
+   
+24. Make changes to codebase
+25. Build and tag new Docker image: `docker build . -t ja-web-test:v2`
+26. Tag local Docker image for registry: `docker tag ja-web-test:v2 jaContainerRegistry.azurecr.io/ja-web-test:latest`
+27. Push image to registry: `docker push jaContainerRegistry.azurecr.io/ja-web-test:latest`
 <!-- To get Tenant-ID, run: `az account show` <span style="font-weight: lighter">// Copy returned 'homeTenantId' prop</span> -->
