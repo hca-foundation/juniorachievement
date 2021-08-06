@@ -42,17 +42,17 @@
 19. Get service principal of the assigned identity: `az webapp identity assign --resource-group jaResourceGroup --name ja-web-test --query principalId - -output tsv`
 20. Retrieve subscription ID: `az account show --query id --output tsv`
 21. Grant the web app permission to access the container registry: `az role assignment create --assignee <principal-id> --scope /subscriptions/<subscription-id>/resourceGroups/jaResourceGroup/providers/Microsoft.ContainerRegistry/registries/jaContainerRegistry --role "AcrPull"` <span style="font-weight: lighter">//Replace \<subscription-id\> and \<principal-id\> with outputs from \#19 and \#20</span>
-22. Configure your app to use the managed identity to pull from Azure Container Registry: `az resource update --ids /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Web/sites/<app-name>/config/web --set properties.acrUseManagedIdentityCreds=True` <span style="font-weight: lighter">//Replace \<subscription-id\> and with output from \#19 and replace /<resource-group> & /<app-name> accordingly.</span>
+22. Configure your app to use the managed identity to pull from Azure Container Registry: `az resource update --ids /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Web/sites/<app-name>/config/web --set properties.acrUseManagedIdentityCreds=True` <span style="font-weight: lighter">//Replace \<subscription-id\> with output from \#19 and replace \<resource-group> & \<app-name> with correct names.</span>
 
 ### Deploy and test
 
-22. Specify container registry and image to deploy for web app: `az webapp config container set --name ja-web-test --resource-group jaResourceGroup --docker-custom-image-name jaContainerRegistry.azurecr.io/ja-web-test:latest --docker-registry-server-url https://jaContainerRegistry.azurecr.io` <span style="font-weight: lighter">// Web app should be running in container upon completion</span>
-23. Test at [http://ja-web-test.azurewebsites.net](http://ja-web-test.azurewebsites.net) <span style="font-weight: lighter">//May take some time for the app to respond on first access; refresh if page browser times out</span>
+23. Specify container registry and image to deploy for web app: `az webapp config container set --name ja-web-test --resource-group jaResourceGroup --docker-custom-image-name jaContainerRegistry.azurecr.io/ja-web-test:latest --docker-registry-server-url https://jaContainerRegistry.azurecr.io` <span style="font-weight: lighter">// Web app should be running in container upon completion</span>
+24. Test at [http://ja-web-test.azurewebsites.net](http://ja-web-test.azurewebsites.net) <span style="font-weight: lighter">//May take some time for the app to respond on first access; refresh if page browser times out</span>
 
 ### Update and redeploy
    
-24. Make changes to codebase
-25. Build and tag new Docker image: `docker build . -t ja-web-test:v2`
-26. Tag local Docker image for registry: `docker tag ja-web-test:v2 jaContainerRegistry.azurecr.io/ja-web-test:latest`
-27. Push image to registry: `docker push jaContainerRegistry.azurecr.io/ja-web-test:latest`
+25. Make changes to codebase
+26. Build and tag new Docker image: `docker build . -t ja-web-test:v2`
+27. Tag local Docker image for registry: `docker tag ja-web-test:v2 jaContainerRegistry.azurecr.io/ja-web-test:latest`
+28. Push image to registry: `docker push jaContainerRegistry.azurecr.io/ja-web-test:latest`
 <!-- To get Tenant-ID, run: `az account show` <span style="font-weight: lighter">// Copy returned 'homeTenantId' prop</span> -->
