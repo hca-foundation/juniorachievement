@@ -202,16 +202,15 @@ class FormInputLayout extends Component {
       pretest: aboutSectionData.pretest,
     };
 
-    // TODO: IF !CENTAMOUNT, DONT CONCAT .00
     // format free response data
     const handleConcatenation = (dollarAmount, centAmount) => {
       let response = `${dollarAmount}.${centAmount}`;
       if (!dollarAmount && !centAmount) {
         response = "";
       } else if (!dollarAmount) {
-        response = `0.${centAmount}`;
+        response = `.${centAmount}`;
       } else if (!centAmount) {
-        response = `${dollarAmount}.00`;
+        response = `${dollarAmount}.`;
       }
 
       return response;
@@ -301,7 +300,7 @@ class FormInputLayout extends Component {
 
     // TODO: CHANGE TO COMPLETION PAGE FOR PRODUCTION
     DataManager.post("assessments/", completedForm).then(() => {
-      this.props.history.push("/");
+      this.props.history.push("/completionpage");
     });
   };
 
