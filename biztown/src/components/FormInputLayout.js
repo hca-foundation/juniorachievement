@@ -202,7 +202,6 @@ class FormInputLayout extends Component {
       pretest: aboutSectionData.pretest,
     };
 
-    // TODO: IF !CENTAMOUNT, DONT CONCAT .00
     // format free response data
     const handleConcatenation = (dollarAmount, centAmount) => {
       let response = `${dollarAmount}.${centAmount}`;

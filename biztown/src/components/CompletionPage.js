@@ -10,7 +10,16 @@ const CompletionPage = () => {
       }}
     >
       <img src={headerLogo} alt="Girl in a jacket" width="100%"></img>
-      <h2>Thank you for participating in our BizTown program!</h2>
+      <h2
+        style={{
+          textAlign: "center",
+          background: "#d59844",
+          padding: "20px",
+          marginTop: "0",
+        }}
+      >
+        Thank you for participating in our BizTown program!
+      </h2>
     </div>
   );
 };

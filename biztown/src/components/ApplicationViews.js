@@ -1,7 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import CompletionPage from "./CompletionPage.js";
 import { FormInputLayout } from "./FormInputLayout.js";
-import { CompletionPage } from "./CompletionPage.js";
+// import { CompletionPage } from "./CompletionPage.js";
 
 const ApplicationViews = () => {
   return (
